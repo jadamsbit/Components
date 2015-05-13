@@ -1,0 +1,106 @@
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Component Tracing</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/custom.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="container">
+	<h1 class="text-center">Component Tracing</h1>
+		<div class="row">
+			<h1 class="col-lg-3">Dz1111</h1>
+			<h2 class="col-lg-3">2011 D10 Dozer  In Service Date 2/11/12</h2>
+		</div><!--End of Row #1 -->	
+			<div class="row">
+				<div class="col-lg-2">
+					<h3>Component</h3>
+					<div class="comp"><p>Engine</p></div>
+					<div class="comp"><p>Torque</p></div>
+					<div class="comp"><p>Transmission</p></div>
+					<div class="comp"><p>Left Final Drive</p></div>
+					<div class="comp"><p>Right Final Drive</p></div>
+					<div class="comp"><p>Blade</p></div>
+					<div class="comp"><p>Left Roller Frame</p></div>
+					<div class="comp"><p>Right Roller Frame</p></div>
+					<div class="comp"><p>Left Track</p></div>
+					<div class="comp"><p>Right Track</p></div>
+					<div class="comp"><p>Left Push Arm</p></div>
+					<div class="comp"><p>Right Push Arm</p></div>
+					<div class="comp"><p>Cutting Edges</p></div>
+					<div class="comp"><p>Left Corner Bit</p></div>
+					<div class="comp"><p>Right Corner Bit</p></div>
+			</div><!--  End of Column 1 -->
+			<div class="col-lg-1">
+				<h3>Hours</h3>
+				<div class="hours"id="engine_hours"><p>2,318</p></div>
+				<div class="hours"id="torque_hours"><p>2,318</p></div>
+				<div class="hours"id="transmission_hours"><p>6,245</p></div>
+				<div class="hours"id="leftFinal_hours"><p>5,567</p></div>
+				<div class="hours"id="rightFinal_hours"><p>4,378</p></div>
+				<div class="hours"id="blade_hours"><p>16,245</p></div>
+				<div class="hours"id="leftFrame_hours"><p>12,318</p></div>
+				<div class="hours"id="rightFrame_hours"><p>10,458</p></div>
+				<div class="hours"id="leftTrack_hours"><p>3,245</p></div>
+				<div class="hours"id="rightTrack_hours"><p>3,567</p></div>
+				<div class="hours"id="leftArm_hours"><p>8,318</p></div>
+				<div class="hours"id="rightArm_hours"><p>8,458</p></div>
+				<div class="hours"id="cuttingEdge_hours"><p>1,378</p></div>
+				<div class="hours"id="leftBit_hours"><p>245</p></div>
+				<div class="hours"id="rightBit_hours"><p>245</p></div>
+			</div>
+			<div class="col-lg-1">
+				<h3>Projection</h3>
+				<div class="proj"id="engine_proj"><p>16,000</p></div>
+				<div class="proj"id="torque_proj"><p>8,000</p></div>
+				<div class="proj"id="transmission_proj"><p>8,000</p></div>
+				<div class="proj"id="leftFinal_proj"><p>6,000</p></div>
+				<div class="proj"id="rightFinal_proj"><p>6,000</p></div>
+				<div class="proj"id="blade_proj"><p>15,000</p></div>
+				<div class="proj"id="leftFrame_proj"><p>11,000</p></div>
+				<div class="proj"id="rightFrame_proj"><p>11,000</p></div>
+				<div class="proj"id="leftArm_proj"><p>20,000</p></div>
+				<div class="proj"id="rightArm_proj"><p>20,000</p></div>
+				<div class="proj"id="leftTrack_proj"><p>9,000</p></div>
+				<div class="proj"id="rightTrack_proj"><p>9,000</p></div>
+				<div class="proj"id="cuttingEdge_proj"><p>4,000</p></div>
+				<div class="proj"id="leftBit_proj"><p>2,000</p></div>
+				<div class="proj"id="rightBit_proj"><p>2,000</p></div>
+			</div>
+	</div><!-- End of Row #2 -->
+	<div class="row" id="entry">
+		<div class="col-lg-2">
+			<div class="comp"><p>Hours Worked</p></div>
+		</div>
+		<div class="col-lg-1">
+			<div class="hours"><input type="number" name="" id="input" class="form-control" value="0" min="0" max="24" step=".25" required="required" title=""></div>
+		</div>
+		<div class="col-lg-1">
+		<div><button type="button" class="btn btn-info" id="submit">Submit</button></div>
+	</div>
+	</div> <!--   End of Row 3 -->
+</div>  <!-- End of Container -->
+
+
+
+
+
+		<!-- jQuery -->	
+	<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/java.js"></script>
+
+</body>
+</html>
