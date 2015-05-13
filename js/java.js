@@ -20,10 +20,6 @@ model.components.push({"component":"leftBit", "hours":"245", "projection":"2000"
 model.components.push({"component":"rightBit", "hours":"245", "projection":"2000"});
 
 
-
-
-console.log(model);
-
 $( document ).ready(function() {
   // Handler for .ready() called.
 
@@ -67,6 +63,23 @@ function calculate(input){
 
 	//apply the input to each hours value
 }
+
+function updateRecord(newValue, componentName) {
+//loop through the model's
+	for(var m=0; m < model.components.length; m++){ // loop thru all items
+		if (model.components[m].component === componentName){
+			var oldValue = Number(model.components[m].hours);
+			var whatEver = newValue + oldValue;
+			model.components[m].hours = whatEver.toString();
+
+		}
+
+		
+	}
+//grab matching component names
+//update hours for matching components
+}
+
 function updateOutput(){
 	//get the model
     console.log(model);
@@ -77,6 +90,16 @@ function updateOutput(){
 		$("#" + model.components[i].component + "_hours p").html(currentComponent['hours']);
 	}
 }
+$( ".updateRecordButton" ).click(function(evt) {
+	var id = $(this).attr('id'); 
+	var inputElement = id.substring(id.lastIndexOf("-")+1);
+	var newValue = Number($("#part-item-input-" +inputElement).val());
+	var componentName = $(this).attr('data-button');
+	console.log(newValue);
+	updateRecord(newValue, componentName);
+	updateOutput();
+});
+
 
 $( "#submit" ).click(function(evt) {
 	//get the input value
