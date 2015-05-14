@@ -5,7 +5,8 @@ model.scriptURL = "http://localhost:8888/components.php";
 
 model.updateModel = function (data){
 	model.data  = JSON.parse(data);
-	console.log(model);
+	model.data = JSON.parse(model.data);
+	console.log(model.data);
 }
 
 model.getData = function (data){
@@ -25,9 +26,10 @@ model.getData = function (data){
 }
 
 model.saveData = function (data){
+	console.log(JSON.stringify(model.data));
 	var data = {
 	      "action": "save",
-	      "data" : model.data
+	      "data" : JSON.stringify(model.data)
 	  };
 	data = $(this).serialize() + "&" + $.param(data);
 	$.ajax( {
