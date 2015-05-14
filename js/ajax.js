@@ -6,7 +6,55 @@ model.updateModel = function (data){
 	console.log(model);
 }
 
-console.log(model);
+model.getData = function (data){
+	var data = {
+	      "action": "load"
+	  };
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax( {
+		method: "POST",
+		url: scriptURL,
+		dataType:"json",
+		data:data,
+		success: function (data){
+			model.updateModel(data["json"]);
+		}
+	});
+}
+
+model.saveData = function (data){
+	var data = {
+	      "action": "save",
+	      "data" : model.data
+	  };
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax( {
+		method: "POST",
+		url: scriptURL,
+		dataType:"json",
+		data:data,
+		success: function (data){
+			model.updateModel(data["json"]);
+		}
+	});
+}
+
+model.resetData = function(){
+	var data = {
+	      "action": "reset"
+	  };
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax( {
+		method: "POST",
+		url: scriptURL,
+		dataType:"json",
+		data:data,
+		success: function (data){
+			model.updateModel(data["json"]);
+		}
+	});
+}
+//console.log(model);
 
 $( document ).ready(function (){
 	// setup button handlers
@@ -15,54 +63,19 @@ $( document ).ready(function (){
 	
 	$("#loadButton").click(function (){
 		// call the php script
-		var data = {
-		      "action": "load"
-		  };
-		data = $(this).serialize() + "&" + $.param(data);
-		$.ajax( {
-			method: "POST",
-  			url: scriptURL,
-  			dataType:"json",
-  			data:data,
-  			success: function (data){
-  				model.updateModel(data["json"]);
-  			}
-  		});
+		model.getData();
 	});
 
 	$("#saveButton").click(function (){
 		// call the php script
-		var data = {
-		      "action": "save",
-		      "data" : model.data
-		  };
-		data = $(this).serialize() + "&" + $.param(data);
-		$.ajax( {
-			method: "POST",
-  			url: scriptURL,
-  			dataType:"json",
-  			data:data,
-  			success: function (data){
-  				model.updateModel(data["json"]);
-  			}
-  		});
+		model.saveData();
 	});
 
 	$("#resetButton").click(function () {
 		// call the php script
-		var data = {
-		      "action": "reset"
-		  };
-		data = $(this).serialize() + "&" + $.param(data);
-		$.ajax( {
-			method: "POST",
-  			url: scriptURL,
-  			dataType:"json",
-  			data:data,
-  			success: function (data){
-  				model.updateModel(data["json"]);
-  			}
-  		});
+		model.resetData();
 	});
+
+	model.getData();
 
 });
