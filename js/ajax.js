@@ -1,6 +1,8 @@
 var model = {};
 model.data = JSON.parse("{}");
 
+model.scriptURL = "http://localhost:8888/components.php";
+
 model.updateModel = function (data){
 	model.data  = JSON.parse(data);
 	console.log(model);
@@ -13,7 +15,7 @@ model.getData = function (data){
 	data = $(this).serialize() + "&" + $.param(data);
 	$.ajax( {
 		method: "POST",
-		url: scriptURL,
+		url: model.scriptURL,
 		dataType:"json",
 		data:data,
 		success: function (data){
@@ -30,7 +32,7 @@ model.saveData = function (data){
 	data = $(this).serialize() + "&" + $.param(data);
 	$.ajax( {
 		method: "POST",
-		url: scriptURL,
+		url: model.scriptURL,
 		dataType:"json",
 		data:data,
 		success: function (data){
@@ -46,7 +48,7 @@ model.resetData = function(){
 	data = $(this).serialize() + "&" + $.param(data);
 	$.ajax( {
 		method: "POST",
-		url: scriptURL,
+		url: model.scriptURL,
 		dataType:"json",
 		data:data,
 		success: function (data){
@@ -58,8 +60,6 @@ model.resetData = function(){
 
 $( document ).ready(function (){
 	// setup button handlers
-
-	var scriptURL = "http://localhost:8888/components.php";
 	
 	$("#loadButton").click(function (){
 		// call the php script
