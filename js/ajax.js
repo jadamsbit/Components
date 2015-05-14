@@ -1,69 +1,83 @@
-var model = json.parse("");
+var model = {};
+model.data = JSON.parse("{}");
 
-$(document).ready(function {
-	// setup button handlers
+model.scriptURL = "http://localhost:8888/components.php";
 
-	var scriptURL = "http://localhost:8888/scripts/components.php";
-
-	$("#loadButton").click(function {
-		// call the php script
-		var jqxhr = $.ajax( {
-			method: "POST",
-  			url: scriptURL,
-  			action: "load",
-  			data: {} 
-  		})
-		  .done(function(data) {
-		    updateModel(data);
-		  })
-		  .fail(function() {
-		    alert( "error loading" );
-		  })
-		  .always(function() {
-		  });
-	});
-
-	$("#saveButton").click(function {
-		// call the php script
-		var jqxhr = $.ajax( 
-			method: "POST",
-  			url: scriptURL,
-  			action: "save",
-  			data: {
-  				components: urlencode(model.toString())
-  			}
-  		})
-		  .done(function(data) {
-		    alert( "success" );
-		    updateModel(data);
-		  })
-		  .fail(function() {
-		    alert( "error saving" );
-		  })
-		  .always(function() {
-		  });
-	});
-
-	$("#resetButton").click(function {
-		// call the php script
-		var jqxhr = $.ajax( 
-			method: "POST",
-  			url: scriptURL,
-  			action: "reset",
-  			data: {}
-  		})
-		  .done(function(data) {
-		    alert( "success" );
-		    updateModel(data);
-		  })
-		  .fail(function() {
-		    alert( "error reseting" );
-		  })
-		  .always(function() {
-		  });
-	});
-});
-
-function updateModel(data){
-	model = json.parse(data);
+model.updateModel = function (data){
+	model.data  = JSON.parse(data);
+	model.data = JSON.parse(model.data);
+	console.log(model.data);
 }
+
+model.getData = function (data){
+	var data = {
+	      "action": "load"
+	  };
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax( {
+		method: "POST",
+		url: model.scriptURL,
+		dataType:"json",
+		data:data,
+		success: function (data){
+			model.updateModel(data["json"]);
+		}
+	});
+}
+
+model.saveData = function (data){
+	console.log(JSON.stringify(model.data));
+	var data = {
+	      "action": "save",
+	      "data" : JSON.stringify(model.data)
+	  };
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax( {
+		method: "POST",
+		url: model.scriptURL,
+		dataType:"json",
+		data:data,
+		success: function (data){
+			model.updateModel(data["json"]);
+		}
+	});
+}
+
+model.resetData = function(){
+	var data = {
+	      "action": "reset"
+	  };
+	data = $(this).serialize() + "&" + $.param(data);
+	$.ajax( {
+		method: "POST",
+		url: model.scriptURL,
+		dataType:"json",
+		data:data,
+		success: function (data){
+			model.updateModel(data["json"]);
+		}
+	});
+}
+//console.log(model);
+
+$( document ).ready(function (){
+	// setup button handlers
+	
+	$("#loadButton").click(function (){
+		// call the php script
+		model.getData();
+	});
+
+	$("#saveButton").click(function (){
+		// call the php script
+		model.saveData();
+	});
+
+	$("#resetButton").click(function () {
+		// call the php script
+		model.resetData();
+	});
+
+	model.getData();
+
+});
