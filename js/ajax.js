@@ -1,5 +1,4 @@
-var model = {};
-model.data = JSON.parse("{}");
+
 
 model.scriptURL = "http://localhost:8888/components.php";
 

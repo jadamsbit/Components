@@ -29,3 +29,52 @@ h3{
 	margin-top: 2em;
 	margin-bottom: 2em;
 }
+
+#showHide div {
+	height: 3em;
+	text-align: center;
+}
+
+.textPush {
+	padding-top: .5em;
+}
+
+#showHide {
+	border: 3px solid black;
+	margin-bottom: 2em;
+	background-color: #d8d8d8;
+	color:red;
+	font-weight: bold;
+}
+#newRoof{
+	margin-top: .2em;
+}
+#newComp{
+	margin-top: .2em;
+}
+#newProj{
+	margin-top: .2em;
+}
+#insertComp{
+	margin-top: .2em;
+}
+#out{
+	padding-left: 2em
+}
+#addComp{
+	margin-bottom: 2em;
+}
+#textFormat{
+	padding-left: 4em;
+	
+}
+
+
+.update input{
+	text-align: center;
+	vertical-align: center;
+	padding:.3em;
+}
+.adjust button{
+	height: 2.3em;
+}

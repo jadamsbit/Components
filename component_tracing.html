@@ -15,8 +15,50 @@
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		<style>
+			#main-menu {
+				
+			}
+			#main-menu ul {
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+				text-align: center;
+			}
+			#main-menu li { 
+				display: inline; 
+			}
+		</style>
 	</head>
 	<body>
+		<div id="main-menu" class="container">
+
+			<div class="row-fluid">
+
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+					<ul>
+
+						<li>
+							<button id="loadButton">Load</button>
+						</li>
+
+						<li>
+							<button id="saveButton">Save</button>
+						</li>
+
+						<li>
+							<button id="resetButton">Reset</button>
+						</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+	</div>
+
 <div class="container">
 	<h1 class="text-center">Component Tracing</h1>
 		<div class="row">
@@ -24,247 +66,31 @@
 			<h2 class="col-lg-3">2011 D10 Dozer  In Service Date 2/11/12</h2>
 		</div><!--End of Row #1 -->	
 			<div class="row">
-				<div class="col-lg-2">
-					<h3>Component</h3>
-					<div class="comp">
-						<p>Engine</p>
-					</div>
-					<div class="comp">
-						<p>Torque</p>
-					</div>
-					<div class="comp">
-						<p>Transmission</p>
-					</div>
-					<div class="comp">
-						<p>Left Final Drive</p>
-					</div>
-					<div class="comp">
-						<p>Right Final Drive</p>
-					</div>
-					<div class="comp">
-						<p>Blade</p>
-					</div>
-					<div class="comp">
-						<p>Left Roller Frame</p>
-					</div>
-					<div class="comp">
-						<p>Right Roller Frame</p>
-					</div>
-					<div class="comp">
-						<p>Left Track</p>
-					</div>
-					<div class="comp">
-						<p>Right Track</p>
-					</div>
-					<div class="comp">
-						<p>Left Push Arm</p>
-					</div>
-					<div class="comp">
-						<p>Right Push Arm</p>
-					</div>
-					<div class="comp">
-						<p>Cutting Edges</p>
-					</div>
-					<div class="comp">
-						<p>Left Corner Bit</p>
-					</div>
-					<div class="comp">
-						<p>Right Corner Bit</p>
-					</div>
-				</div><!--  End of Column 1 -->
-				<div class="col-lg-1">
-					<h3>Hours</h3>
-					<div class="hours"id="engine_hours">
-						<p>2,318</p>
-					</div>
-					<div class="hours"id="torque_hours">
-						<p>2,318</p>
-					</div>
-					<div class="hours"id="transmission_hours">
-						<p>6,245</p>
-					</div>
-					<div class="hours"id="leftFinal_hours">
-						<p>5,567</p>
-					</div>
-					<div class="hours"id="rightFinal_hours">
-						<p>4,378</p>
-					</div>
-					<div class="hours"id="blade_hours">
-						<p>16,245</p>
-					</div>
-					<div class="hours"id="leftFrame_hours">
-						<p>12,318</p>
-					</div>
-					<div class="hours"id="rightFrame_hours">
-						<p>10,458</p>
-					</div>
-					<div class="hours"id="leftTrack_hours">
-						<p>3,245</p>
-					</div>
-					<div class="hours"id="rightTrack_hours">
-						<p>3,567</p>
-					</div>
-					<div class="hours"id="leftArm_hours">
-						<p>8,318</p>
-					</div>
-					<div class="hours"id="rightArm_hours">
-						<p>8,458</p>
-					</div>
-					<div class="hours"id="cuttingEdge_hours">
-						<p>1,378</p>
-					</div>
-					<div class="hours"id="leftBit_hours">
-						<p>245</p>
-					</div>
-					<div class="hours"id="rightBit_hours">
-						<p>245</p>
-					</div>
+
+			<div class="col-lg-2" id="component">
+				<h3>Component</h3>
+				
+			</div><!--  End of Column 1 -->
+			<div class="col-lg-1" id="hours">
+				<h3>Hours</h3>
+				
+			</div>
+			<div class="col-lg-2" id="projection">
+				<h3>Projection</h3>
+				
+			</div>
+			<div class="col-lg-1" id="part-item-input-">
+					<h3>Update</h3>
+					
 				</div>
-				<div class="col-lg-2">
-					<h3>Projection</h3>
-					<div class="proj"id="engine_proj">
-						<p>16,000</p>
-					</div>
-					<div class="proj"id="torque_proj">
-						<p>8,000</p>
-					</div>
-					<div class="proj"id="transmission_proj">
-						<p>8,000</p>
-					</div>
-					<div class="proj"id="leftFinal_proj">
-						<p>6,000</p>
-					</div>
-					<div class="proj"id="rightFinal_proj">
-						<p>6,000</p>
-					</div>
-					<div class="proj"id="blade_proj">
-						<p>15,000</p>
-					</div>
-					<div class="proj"id="leftFrame_proj">
-						<p>11,000</p>
-					</div>
-					<div class="proj"id="rightFrame_proj">
-						<p>11,000</p>
-					</div>
-					<div class="proj"id="leftArm_proj">
-						<p>20,000</p>
-					</div>
-					<div class="proj"id="rightArm_proj">
-						<p>20,000</p>
-					</div>
-					<div class="proj"id="leftTrack_proj">
-						<p>9,000</p>
-					</div>
-					<div class="proj"id="rightTrack_proj">
-						<p>9,000</p>
-					</div>
-					<div class="proj"id="cuttingEdge_proj">
-						<p>4,000</p>
-					</div>
-					<div class="proj"id="leftBit_proj">
-						<p>2,000</p>
-					</div>
-					<div class="proj"id="rightBit_proj">
-						<p>2,000</p>
-					</div>
-				</div>
-				<div class="col-lg-1">
-					<h3>Hours</h3>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-1" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-2" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-3" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-4" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-5" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-6" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-7" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-8" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-9" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-10" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-11" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-12" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-13" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-14" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-					<div class="hoursIndiv">
-						<input type="number" name="" id="part-item-input-15" class="form-control" value="0" min="0" max="24" step=".25" required="required" title="" style="height: 2.28em;">
-					</div>
-				</div>
-				<div class="col-lg-3">
+					<div class="col-lg-3">
 					<div style="height: 4em;"></div>
-					<div>
-						<button type="button" data-button='engine' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-1">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='torque' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-2">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='transmission'  class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-3">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='leftFinal' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-4">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='rightFinal' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-5">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='blade' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-6">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='leftFrame' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-7">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='rightFrame' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-8">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='leftTrack' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-9">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='rightTrack' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-10">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='leftArm' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-11">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='rightArm' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-12">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='cuttingEdge' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-13">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='leftBit' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-14">Adjust</button>
-					</div>
-					<div>
-						<button type="button" data-button='rightBit' class="btn btn-info updateRecordButton" style="height: 2.3em;" id="part-item-button-15">Adjust</button>
+					<div id="adjust1">
+						
 					</div>
 				</div>
-		</div><!-- End of Row #2 -->
+	</div><!-- End of Row #2 -->
+
 	<div class="row" id="entry">
 		<div class="col-lg-2">
 			<div class="comp"><p>Hours Worked</p></div>
@@ -276,6 +102,35 @@
 		<div><button type="button" class="btn btn-info" id="submit">Submit</button></div>
 	</div>
 	</div> <!--   End of Row 3 -->
+	
+	<!-- this is the spot for the add component feature. -->
+	<div class="row">
+		<div class="feature">
+			<button type="button" class="btn btn-info" id="addComp">Add Components</button>
+		</div> <!-- this is the end of the feature div. -->
+	</div> <!-- this is the end of the top row for the add button -->
+	<div class="row" id="showHide">
+		<div class="col-lg-3">
+			<div class="col-lg-4 textPush">Component</div>
+			<div class="col-lg-6"><input type="text" name="" id="newComp" class="form-control" value="Item here" min="" max="" step="" required="required" title=""></div>
+		</div> <!-- this is the end of the first col of the input div -->
+		
+		<div class="col-lg-3" >
+			<div class="col-lg-4 textPush"id="textFormat">Hours</div>
+			<div class="col-lg-6"><input type="number" name="" id="newRoof" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+		</div> <!-- this is the end of the second col of the input div -->
+		
+		<div class="col-lg-3">
+			<div class="col-lg-4 textPush">Projection</div>
+			<div class="col-lg-6"><input type="number" name="" id="newProj" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+		</div> <!-- this is the end of the third col for the input -->
+		<div>
+			<button type="button" class="btn btn-info" id="insertComp">input Components</button>
+		    <span class="glyphicon-remove glyphicon class " id="out">Exit</span>
+		</div>
+				
+	</div> <!-- end of the show and hide feilds -->
+	 
 </div>  <!-- End of Container -->
 
 
@@ -285,7 +140,9 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/java.js"></script>
+		<script type="text/javascript" src="js/model.js"></script>
+		<script type="text/javascript" src="js/ajax.js"></script>
+		<script type="text/javascript" src="js/addComponent.js"></script>
 
 </body>
 </html>
