@@ -11,30 +11,38 @@ define the model
 
 $( document ).ready(function() {
 	  // Handler for .ready() called.	
-initalize();
+	/*===== this will hide the fields for the add features area. =====*/
+	$('#showHide').hide();
 
-	  /*===== this will hide the fields for the add features area. =====*/
-$('#showHide').hide();
+	$( "#submit" ).click(function(evt) {
+		//get the input value
+		var newValue = Number($("#input").val());
+		//console.log(newValue);
+		//run calculate
+		calculate(newValue);
+		//run update output
+		updateOutput();
+		checkLifeCycle();
+	});
 
+	/*===== this is the function to hide the add features button =====*/
+	$( "#addComp" ).click(function(evt) {
+		$("#addComp").hide();
+		$("#showHide").show();
+	});
 
+	/*===== this is the function that will take in the user info and hide the fields and buuton and show the add button. =====*/
+	$( "#insertComp" ).click(function(evt) {
+		$("#addComp").show();
+		$("#showHide").hide();
+		generateOutput()
+	});
 
-/*
-the model will contain
-all values to be presented and updated
-
-the model will be a json object
-
-define the controller
-the controller will contain two methods
-method 1 update output
-method 2 run calculations
-
-define the view
-the html
-
-update the view
-*/
-
+	// Show/Hide for the Exit button
+	$("#out").click(function(evt) {
+		$("#showHide").hide();
+		$("#addComp").show();
+	});
 
 });
 
@@ -52,9 +60,6 @@ function calculate(input){
 		model.data.machines[model.selectedMachine].components[m].hours = whatEver.toString(); // set hours to whatever value
 		// console.log("now: " + model.components[m].hours);
 	}
-	//get the input from the submit button
-
-	//apply the input to each hours value
 }
 
 
@@ -70,30 +75,6 @@ function updateOutput(){
 	}
 }
 
-$( "#submit" ).click(function(evt) {
-	//get the input value
-	var newValue = Number($("#input").val());
-	//console.log(newValue);
-	//run calculate
-	calculate(newValue);
-	//run update output
-	updateOutput();
-	checkLifeCycle();
-});
-
-/*===== this is the function to hide the add features button =====*/
-$( "#addComp" ).click(function(evt) {
-	$("#addComp").hide();
-	$("#showHide").show();
-	});
-
-
-	/*===== this is the function that will take in the user info and hide the fields and buuton and show the add button. =====*/
-$( "#insertComp" ).click(function(evt) {
-	$("#addComp").show();
-	$("#showHide").hide();
-	generateOutput()
-	});
 
 	// Input of the new data into the JSON object.
 function generateOutput(){
@@ -114,16 +95,24 @@ function generateOutput(){
 }
  
 	// Inital load of all information in the JSON to the HTML.
-function initalize(){
+function initialize(){
 		//loop through the json object
 	 for(var i=0; i < model.data.machines[model.selectedMachine].components.length; i++){
 		//output a line item for each json object found
-	var id = model.data.machines[model.selectedMachine].components[i].id
-	var name = model.data.machines[model.selectedMachine].components[i].component
-	var hours = model.data.machines[model.selectedMachine].components[i].hours
-	var projection = model.data.machines[model.selectedMachine].components[i].projection
-	generateLineItem(id,name,hours,projection)
+		var id = model.data.machines[model.selectedMachine].components[i].id
+		var name = model.data.machines[model.selectedMachine].components[i].component
+		var hours = model.data.machines[model.selectedMachine].components[i].hours
+		var projection = model.data.machines[model.selectedMachine].components[i].projection
+		generateLineItem(id,name,hours,projection);
 	}
+}
+
+function nuke (){
+	$("#component").html("<h3>Component</h3>");
+	$("#hours").html("<h3>Hours</h3>");
+	$("#projection").html("<h3>Projection</h3>");
+	$("#part-item-input-").html("<h3>Update</h3>");
+	$("#adjust1").html("");
 }
 
 	// Generates the information and the new containers.
@@ -136,30 +125,22 @@ function generateLineItem (id, name, hours, projection){
 	$("#adjust1").append("<div class='adjust' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div>");
 
 	$( "#" + id + "_adjust button" ).click(function(evt) {
-		var id = $(this).data('button'); 
+		var id = Number($(this).data('button')); 
 		var newValue = Number($("#part-item-input-" + id).val());
 		updateRecord(newValue, id);
 		updateOutput();
 		checkLifeCycle();
-		
 	});	
 }
 
-
-	// Show/Hide for the Exit button
-$("#out").click(function(evt) {
-	$("#showHide").hide();
-	$("#addComp").show();
-});
-
-
-function updateRecord(newValue, componentId) {
+function updateRecord(newValue, componentID) {
 	//loop through the model's
 	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
-		if (model.data.machines[model.selectedMachine].components[m].id === componentId){
-		var oldValue = Number(model.data.machines[model.selectedMachine].components[m].hours);
-		var whatEver = newValue + oldValue;
-		model.data.machines[model.selectedMachine].components[m].hours = whatEver.toString();
+		var compID = Number(model.data.machines[model.selectedMachine].components[m].id);
+		if (compID === componentID){
+			var oldValue = Number(model.data.machines[model.selectedMachine].components[m].hours);
+			var whatEver = newValue + oldValue;
+			model.data.machines[model.selectedMachine].components[m].hours = whatEver.toString();
 		} 
 	}
 }
