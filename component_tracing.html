@@ -58,12 +58,47 @@
 			</div>
 
 	</div>
+	<div class="container">
+	
+	<div class="dropdown">
+	    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add / Select Machine
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu" id="machineSelector" role="menu" aria-labelledby="menu1">
+	      <li class="keep">Select a Machine</li>
+	      <li class="keep"><a role="menuitem" id="showMachineForm">Add New Machine</a></li>
+	    </ul>
+	</div>
+</div>
+<div class="container">
+	<div class="row" id="showHideMachine">
+			<div class="col-lg-3">
+				<!-- <div class="col-lg-4 textPush">New Machine ID</div> -->
+				<div class="col-lg-6"><input type="text" name="" id="newMach" class="form-control" placeholder="New Machine ID" required="required" title=""></div>
+			</div> <!-- this is the end of the first col of the input div -->
+			
+			<div class="col-lg-3">
+				<!-- <div class="col-lg-4 textPush">Year/Make/Model</div> -->
+				<div class="col-lg-6"><input type="text" name="" id="newYMM" class="form-control" placeholder="Year/Make/Model" required="required" title=""></div>
+			</div> <!-- this is the end of the second col of the input div -->
+			
+			<div class="col-lg-3">
+				<!-- <div class="col-lg-4 textPush">In Service Date</div> -->
+				<div class="col-lg-6"><input type="text" name="" id="newISD" class="form-control" placeholder="In Service Date" required="required" title=""></div>
+			</div> <!-- this is the end of the third col for the input -->
+			<div>
+				<button type="button" class="btn btn-info" id="addMachine">Add Machine</button>
+			</div>
+	</div>
+</div>
 
 <div class="container">
 	<h1 class="text-center">Component Tracing</h1>
 		<div class="row">
-			<h1 class="col-lg-3">Dz1111</h1>
-			<h2 class="col-lg-3">2011 D10 Dozer  In Service Date 2/11/12</h2>
+			<h1 class="col-lg-3" id="eqNum">Dz1111</h1>
+			<!-- these will change with javascript -->
+			<h2 class="col-lg-3" id="eqInfo">2011 D10 Dozer</h2>
+
+			<h2 class="col-lg-3" id="eqISD">In Service Date 2/11/12</h2>
 		</div><!--End of Row #1 -->	
 			<div class="row">
 
@@ -144,6 +179,7 @@
 		<script type="text/javascript" src="js/model.js"></script>
 		<script type="text/javascript" src="js/ajax.js"></script>
 		<script type="text/javascript" src="js/addComponent.js"></script>
+		<script type="text/javascript" src="js/addMachine.js"></script> 
 
 </body>
 </html>
