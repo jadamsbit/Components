@@ -29,3 +29,27 @@ h3{
 	margin-top: 2em;
 	margin-bottom: 2em;
 }
+
+#showHide #showHideMachine div {
+	height: 3em;
+	text-align: center;
+}
+
+.textPush {
+	padding-top: .5em;
+}
+
+#showHide #showHideMachine {
+	border: 1px solid black;
+	margin-bottom: 2em;
+	background-color: #d8d8d8;
+}
+#newRoof{
+	margin-top: .5em;
+}
+#newComp{
+	margin-top: .5em;
+}
+#newProj{
+	margin-top: .5em;
+}
