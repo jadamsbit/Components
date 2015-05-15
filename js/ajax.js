@@ -5,7 +5,8 @@ model.scriptURL = "http://localhost:8888/components.php";
 model.updateModel = function (data){
 	model.data  = JSON.parse(data);
 	model.data = JSON.parse(model.data);
-	console.log(model.data);
+	nuke();
+	initialize();
 }
 
 model.getData = function (data){
