@@ -1,14 +1,3 @@
-/* 
-
-define the model
-*/
-
-
-
-
-
-// console.log(model);
-
 $( document ).ready(function() {
 	  // Handler for .ready() called.	
 	/*===== this will hide the fields for the add features area. =====*/
@@ -46,7 +35,6 @@ $( document ).ready(function() {
 
 });
 
-
 function calculate(input){
 	//get the model
 	//loop thru each item in the model
@@ -62,7 +50,6 @@ function calculate(input){
 	}
 }
 
-
 function updateOutput(){
 	//get the model
     // console.log(model);
@@ -75,8 +62,7 @@ function updateOutput(){
 	}
 }
 
-
-	// Input of the new data into the JSON object.
+// Input of the new data into the JSON object.
 function generateOutput(){
 	var newComp = $("#newComp").val();
 	var newHours = Number($("#newRoof").val());
@@ -85,34 +71,47 @@ function generateOutput(){
 	model.data.machines[model.selectedMachine].components.push({"id":newId, "component":newComp, "hours":newHours, "projection":newProj});
 	//loop through the json object
 	for(var i=0; i < model.data.machines[model.selectedMachine].components.length; i++){
-	//output a line item for each json object found
-	var id = model.data.machines[model.selectedMachine].components[i].id
-	var name = model.data.machines[model.selectedMachine].components[i].component
-	var hours = model.data.machines[model.selectedMachine].components[i].hours
-	var projection = model.data.machines[model.selectedMachine].components[i].projection
-	}
-	generateLineItem(id,name,hours,projection)
-}
- 
-	// Inital load of all information in the JSON to the HTML.
-function initialize(){
-		//loop through the json object
-	 for(var i=0; i < model.data.machines[model.selectedMachine].components.length; i++){
 		//output a line item for each json object found
 		var id = model.data.machines[model.selectedMachine].components[i].id
 		var name = model.data.machines[model.selectedMachine].components[i].component
 		var hours = model.data.machines[model.selectedMachine].components[i].hours
 		var projection = model.data.machines[model.selectedMachine].components[i].projection
-		generateLineItem(id,name,hours,projection);
+	}
+	generateLineItem(id,name,hours,projection)
+}
+ 
+// Inital load of all information in the JSON to the HTML.
+function initialize(){
+		//loop through the json object
+	if(model.selectedMachine != null){
+		 for(var i=0; i < model.data.machines[model.selectedMachine].components.length; i++){
+			//output a line item for each json object found
+			var id = model.data.machines[model.selectedMachine].components[i].id
+			var name = model.data.machines[model.selectedMachine].components[i].component
+			var hours = model.data.machines[model.selectedMachine].components[i].hours
+			var projection = model.data.machines[model.selectedMachine].components[i].projection
+			generateLineItem(id,name,hours,projection);
+		}
 	}
 }
 
 function nuke (){
+	$("#machineSelector").empty();
+	$("#machineSelector").html('<li class="keep">Select a Machine</li><li class="keep"><a role="menuitem" id="showMachineForm">Add New Machine</a></li>');
 	$("#component").html("<h3>Component</h3>");
 	$("#hours").html("<h3>Hours</h3>");
 	$("#projection").html("<h3>Projection</h3>");
 	$("#part-item-input-").html("<h3>Update</h3>");
 	$("#adjust1").html("");
+
+	 $("#eqNum").html();
+	 $("#eqInfo").html();
+	 $("#eqISD").html();
+
+	$("#showMachineForm").click(function(evt){
+		$("#showMachineForm").hide();
+		$('#showHideMachine').show();
+	});
 }
 
 	// Generates the information and the new containers.
@@ -149,13 +148,11 @@ function checkLifeCycle(){
  	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
 		if(parseInt(model.data.machines[model.selectedMachine].components[m].hours) > parseInt(model.data.machines[model.selectedMachine].components[m].projection)){
 			alert("Maintenance Due Now On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
-		}
-		else if(parseInt(model.data.machines[model.selectedMachine].components[m].hours) > parseInt(model.data.machines[model.selectedMachine].components[m].projection) * 0.90){
+		} else if(parseInt(model.data.machines[model.selectedMachine].components[m].hours) > parseInt(model.data.machines[model.selectedMachine].components[m].projection) * 0.90){
 			alert("Maintenance Due Soon On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
 			console.log (model.data.machines[model.selectedMachine].components[m].component)
-		}
-		else
-		{
+		} else {
+			//
 		}
  	}
 }
