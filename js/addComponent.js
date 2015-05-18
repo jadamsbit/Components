@@ -146,16 +146,65 @@ function updateRecord(newValue, componentID) {
 
 function checkLifeCycle(){
  	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
-		if(parseInt(model.data.machines[model.selectedMachine].components[m].hours) > parseInt(model.data.machines[model.selectedMachine].components[m].projection)){
+		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) >= parseFloat(model.data.machines[model.selectedMachine].components[m].projection)){
+			$( "#" + [m + 1] + "_proj" ).addClass( "urgentWarning" );
+			$( "#" + [m + 1] + "_hours" ).addClass( "urgentWarning" );
+			$( "#" + [m + 1] + "_comp" ).addClass( "urgentWarning" );
 			alert("Maintenance Due Now On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
-		} else if(parseInt(model.data.machines[model.selectedMachine].components[m].hours) > parseInt(model.data.machines[model.selectedMachine].components[m].projection) * 0.90){
+		} else if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) > parseFloat(model.data.machines[model.selectedMachine].components[m].projection) * 0.89  ){
+			$( "#" + [m + 1] + "_hours" ).addClass( "earlyWarning" );
+		$( "#" + [m + 1] + "_proj" ).addClass( "earlyWarning" );
+		$( "#" + [m + 1] + "_comp" ).addClass( "earlyWarning" );
 			alert("Maintenance Due Soon On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
 			console.log (model.data.machines[model.selectedMachine].components[m].component)
-		} else {
-			//
 		}
+		 
+		else 
+				{
+					$( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
+					$( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
+					$( "#" + [m + 1] + "_comp" ).removeClass( "urgentWarning" );	
+					$( "#" + [m + 1] + "_hours" ).removeClass( "earlyWarning" );
+					$( "#" + [m + 1] + "_proj" ).removeClass( "earlyWarning" );
+					$( "#" + [m + 1] + "_comp" ).removeClass( "earlyWarning" );	
+				}
+
+			// if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) < parseFloat(model.data.machines[model.selectedMachine].components[m].projection)){
+			// $( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
+			// $( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
+			// $( "#" + [m + 1] + "_comp" ).removeClass( "urgentWarning" );
+			
+			//
+		// }
+
+			// else if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) < parseFloat(model.data.machines[model.selectedMachine].components[m].projection) * 0.90){
+		
+			// $( "#" + [m + 1] + "_hours" ).removeClass( "earlyWarning" );
+			// $( "#" + [m + 1] + "_proj" ).removeClass( "earlyWarning" );
+			// $( "#" + [m + 1] + "_comp" ).removeClass( "earlyWarning" );
+			// //
+			// }
+			// else {
+
+			// $( "#" + [m + 1] + "_hours" ).removeClass( "earlyWarning" );
+			// $( "#" + [m + 1] + "_proj" ).removeClass( "earlyWarning" );
+			// $( "#" + [m + 1] + "_comp" ).removeClass( "earlyWarning" );
+			// $( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
+			// $( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
+			// $( "#" + [m + 1] + "_comp" ).removeClass( "urgentWarning" );
+
+			// }
+
+
+
+
+		
  	}
 }
+//model.data.machines[model.selectedMachine].components[i].hours
+
+//div class='hours' [m]='" + id + "_hours'
 
 
+//$(this).parent().toggleClass( "urgentWarning" );
 
