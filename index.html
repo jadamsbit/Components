@@ -149,30 +149,40 @@
 	</div> <!-- this is the end of the top row for the add button -->
 	<div class="row" id="showHide">
 		<div class="col-lg-3">
-			<div class="col-lg-4 textPush">Component</div>
-			<div class="col-lg-6"><input type="text" name="" id="newComp" class="form-control" value="Item here" min="" max="" step="" required="required" title=""></div>
+			<div class="row">
+				<div class="col-lg-4 textPush">Component</div>
+				<div class="col-lg-6"><input type="text" name="" id="newComp" class="form-control" value="Item here" min="" max="" step="" required="required" title=""></div>
+			</div>
 		</div> <!-- this is the end of the first col of the input div -->
 		
 		<div class="col-lg-3" >
-			<div class="col-lg-4 textPush"id="textFormat">Hours</div>
-			<div class="col-lg-6"><input type="number" name="" id="newRoof" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+			<div class="row">
+				<div class="col-lg-4 textPush pull-right" id="textFormat">Hours</div>
+				<div class="col-lg-6"><input type="number" name="" id="newRoof" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+			</div>
 		</div> <!-- this is the end of the second col of the input div -->
 		
 		<div class="col-lg-3">
-			<div class="col-lg-4 textPush">Projection</div>
-			<div class="col-lg-6"><input type="number" name="" id="newProj" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+			<div class="row">
+				<div class="col-lg-4 textPush pull-right">Projection</div>
+				<div class="col-lg-6"><input type="number" name="" id="newProj" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+			</div>
 		</div> <!-- this is the end of the third col for the input -->
-		<div>
-			<button type="button" class="btn btn-info" id="insertComp">input Components</button>
-		    <span class="glyphicon-remove glyphicon class " id="out">Exit</span>
+
+		<div class="col-lg-3">
+			<div class="row">
+				<div class="col-lg-4">
+					<button type="button" class="btn btn-info" id="insertComp">add</button>
+				</div>
+				<div class="col-lg-4">
+		    		<span class="glyphicon-remove glyphicon class btn btn-info" id="out">Exit</span>
+		    	</div>
+		    </div>
 		</div>
 				
 	</div> <!-- end of the show and hide feilds -->
 	 
 </div>  <!-- End of Container -->
-
-
-
 
 		<!-- jQuery -->	
 	<script type="text/javascript" src="js/jquery.js"></script>
