@@ -116,13 +116,13 @@ function nuke (){
 
 	// Generates the information and the new containers.
 function generateLineItem (id, name, hours, projection){
-		//take perameters and create HTML for each line item
-	$("#component").append("<div class='comp' id='" + id + "_comp'><p>" + name + "</p> </div>");
-	$("#hours").append("<div class='hours' id='" + id + "_hours'><p>" + hours + "</p> </div>");
-	$("#projection").append("<div class='proj' id='" + id + "_proj'><p>" + projection + "</p> </div>");
-	$("#part-item-input-").append("<div class='update' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='0' max='24' step='.25'></input></div>");
-	$("#adjust1").append("<div class='adjust' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div>");
-
+		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div class='comp col-lg-3' id='" + id + "_comp'><p>" + name + "</p> </div> <div class='hours col-lg-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-2' id='" + id + "_input'><input type='number'  id='part-item-input-"+ id +"' value='0' min='0' max='10000' step='.25'></input></div> <div class='adjust col-lg-3b' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
+		// $("#component").append("<div class='comp' id='" + id + "_comp'><p>" + name + "</p> </div>");
+		// $("#hours").append("<div class='hours' id='" + id + "_hours'><p>" + hours + "</p> </div>");
+		// $("#projection").append("<div class='proj' id='" + id + "_proj'><p>" + projection + "</p> </div>");
+		// $("#part-item-input-").append("<div class='update' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='0' max='24' step='.25'></input></div>");
+		// $("#adjust1").append("<div class='adjust' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div>");
+		
 	$( "#" + id + "_adjust button" ).click(function(evt) {
 		var id = Number($(this).data('button')); 
 		var newValue = Number($("#part-item-input-" + id).val());
