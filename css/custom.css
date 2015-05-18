@@ -69,6 +69,15 @@ h3{
 	
 }
 
+.earlyWarning {
+	background-color:yellow;
+	color: red;
+}
+
+.urgentWarning {
+	background-color:red;
+	color: white;
+}
 
 .update input{
 	text-align: center;
