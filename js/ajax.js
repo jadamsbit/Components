@@ -6,6 +6,8 @@ model.updateModel = function (data){
 	model.data  = JSON.parse(data);
 	model.data = JSON.parse(model.data);
 	nuke();
+	updateMachineListOutput();
+	updateMachineDetails();
 	initialize();
 }
 
