@@ -24,7 +24,7 @@ $( document ).ready(function() {
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
 		$("#showHide").hide();
-		generateOutput()
+		generateOutput();
 	});
 
 	// Show/Hide for the Exit button
@@ -98,6 +98,7 @@ function initialize(){
 function nuke (){
 	$("#machineSelector").empty();
 	$("#machineSelector").html('<li class="keep">Select a Machine</li><li class="keep"><a role="menuitem" id="showMachineForm">Add New Machine</a></li>');
+	$("#newRow").empty();
 	$("#component").html("<h3>Component</h3>");
 	$("#hours").html("<h3>Hours</h3>");
 	$("#projection").html("<h3>Projection</h3>");
@@ -117,6 +118,7 @@ function nuke (){
 	// Generates the information and the new containers.
 function generateLineItem (id, name, hours, projection){
 		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div class='comp col-lg-3' id='" + id + "_comp'><p>" + name + "</p> </div> <div class='hours col-lg-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-2' id='" + id + "_input'><input type='number'  id='part-item-input-"+ id +"' value='0' min='0' max='10000' step='.25'></input></div> <div class='adjust col-lg-3b' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
+		console.log("#newRow");
 		// $("#component").append("<div class='comp' id='" + id + "_comp'><p>" + name + "</p> </div>");
 		// $("#hours").append("<div class='hours' id='" + id + "_hours'><p>" + hours + "</p> </div>");
 		// $("#projection").append("<div class='proj' id='" + id + "_proj'><p>" + projection + "</p> </div>");
@@ -145,29 +147,32 @@ function updateRecord(newValue, componentID) {
 }
 
 function checkLifeCycle(){
- 	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
-		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) >= parseFloat(model.data.machines[model.selectedMachine].components[m].projection)){
-			$( "#" + [m + 1] + "_proj" ).addClass( "urgentWarning" );
-			$( "#" + [m + 1] + "_hours" ).addClass( "urgentWarning" );
-			$( "#" + [m + 1] + "_comp" ).addClass( "urgentWarning" );
-			alert("Maintenance Due Now On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
-		} else if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) > parseFloat(model.data.machines[model.selectedMachine].components[m].projection) * 0.89  ){
-			$( "#" + [m + 1] + "_hours" ).addClass( "earlyWarning" );
-		$( "#" + [m + 1] + "_proj" ).addClass( "earlyWarning" );
-		$( "#" + [m + 1] + "_comp" ).addClass( "earlyWarning" );
-			alert("Maintenance Due Soon On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
-			console.log (model.data.machines[model.selectedMachine].components[m].component)
-		}
-		 
-		else 
-				{
-					$( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
+ 	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){
+ 	$( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
 					$( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
 					$( "#" + [m + 1] + "_comp" ).removeClass( "urgentWarning" );	
 					$( "#" + [m + 1] + "_hours" ).removeClass( "earlyWarning" );
 					$( "#" + [m + 1] + "_proj" ).removeClass( "earlyWarning" );
 					$( "#" + [m + 1] + "_comp" ).removeClass( "earlyWarning" );	
-				}
+					 // loop thru all items
+
+		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) >= parseFloat(model.data.machines[model.selectedMachine].components[m].projection)){
+			$( "#" + [m + 1] + "_proj" ).addClass( "urgentWarning" );
+			$( "#" + [m + 1] + "_hours" ).addClass( "urgentWarning" );
+			$( "#" + [m + 1] + "_comp" ).addClass( "urgentWarning" );
+			
+		}  
+
+		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) > parseFloat(model.data.machines[model.selectedMachine].components[m].projection) * 0.89  ){
+			$( "#" + [m + 1] + "_hours" ).addClass( "earlyWarning" );
+			$( "#" + [m + 1] + "_proj" ).addClass( "earlyWarning" );
+			$( "#" + [m + 1] + "_comp" ).addClass( "earlyWarning" );
+			
+		}
+		
+		alert("Maintenance Due Soon On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
+		
+		
 
 			// if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) < parseFloat(model.data.machines[model.selectedMachine].components[m].projection)){
 			// $( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
