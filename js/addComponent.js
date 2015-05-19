@@ -121,7 +121,7 @@ function nuke (){
 
 	// Generates the information and the new containers.
 function generateLineItem (id, name, hours, projection){
-		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div class='comp col-lg-3' id='" + id + "_comp'><p>" + name + "</p> </div> <div class='hours col-lg-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-2' id='" + id + "_input'><input type='number'  id='part-item-input-"+ id +"' value='0' min='0' max='10000' step='.25'></input></div> <div class='adjust col-lg-3b' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
+		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div class='comp col-lg-3 col-md-3 col-sm-3 col-xs-3' id='" + id + "_comp'><p>" + name + "</p> </div> <div class='hours col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-1 col-md-1 col-sm-1 col-xs-2' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='-24' max='10000' step='1'></input></div> <div class='adjust col-lg-3b col-md-3 col-sm-3 col-xs-2' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
 		console.log("#newRow");
 		// $("#component").append("<div class='comp' id='" + id + "_comp'><p>" + name + "</p> </div>");
 		// $("#hours").append("<div class='hours' id='" + id + "_hours'><p>" + hours + "</p> </div>");
