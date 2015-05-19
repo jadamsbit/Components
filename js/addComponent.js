@@ -24,7 +24,9 @@ $( document ).ready(function() {
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
 		$("#showHide").hide();
+
 		generateOutput();
+		checkLifeCycle();
 	});
 
 	// Show/Hide for the Exit button
@@ -59,7 +61,9 @@ function updateOutput(){
 		var currentComponent = model.data.machines[model.selectedMachine].components[i];
 		$("#" + model.data.machines[model.selectedMachine].components[i].id + "_hours p").html(currentComponent['hours']);
 		//console.log("#" + model.components[i].component + "_hours p")
+		
 	}
+
 }
 
 // Input of the new data into the JSON object.
