@@ -151,13 +151,19 @@ function updateRecord(newValue, componentID) {
 }
 
 function checkLifeCycle(){
+
+	var newNowArray = [];
+	var newSoonArray = [];
+	var newSoon = false;
+	var newNow = false;
+
  	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){
- 	$( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
-					$( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
-					$( "#" + [m + 1] + "_comp" ).removeClass( "urgentWarning" );	
-					$( "#" + [m + 1] + "_hours" ).removeClass( "earlyWarning" );
-					$( "#" + [m + 1] + "_proj" ).removeClass( "earlyWarning" );
-					$( "#" + [m + 1] + "_comp" ).removeClass( "earlyWarning" );	
+ 		$( "#" + [m + 1] + "_hours" ).removeClass( "urgentWarning" );
+		$( "#" + [m + 1] + "_proj" ).removeClass( "urgentWarning" );
+		$( "#" + [m + 1] + "_comp" ).removeClass( "urgentWarning" );	
+		$( "#" + [m + 1] + "_hours" ).removeClass( "earlyWarning" );
+		$( "#" + [m + 1] + "_proj" ).removeClass( "earlyWarning" );
+		$( "#" + [m + 1] + "_comp" ).removeClass( "earlyWarning" );	
 					 // loop thru all items
 
 		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) >= parseFloat(model.data.machines[model.selectedMachine].components[m].projection)){
@@ -165,16 +171,44 @@ function checkLifeCycle(){
 			$( "#" + [m + 1] + "_hours" ).addClass( "urgentWarning" );
 			$( "#" + [m + 1] + "_comp" ).addClass( "urgentWarning" );
 			
+			newNowArray.push (model.data.machines[model.selectedMachine].components[m].component);
+			console.log(newNowArray);
+			newNow=true;
+
+		//	alertPopulateNow(model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
+			
 		}  
 
-		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) > parseFloat(model.data.machines[model.selectedMachine].components[m].projection) * 0.89  ){
+		if(parseFloat(model.data.machines[model.selectedMachine].components[m].hours) > parseFloat(model.data.machines[model.selectedMachine].components[m].projection) * 0.89 && parseFloat(model.data.machines[model.selectedMachine].components[m].hours)< parseFloat(model.data.machines[model.selectedMachine].components[m].projection) ){
 			$( "#" + [m + 1] + "_hours" ).addClass( "earlyWarning" );
 			$( "#" + [m + 1] + "_proj" ).addClass( "earlyWarning" );
 			$( "#" + [m + 1] + "_comp" ).addClass( "earlyWarning" );
-			
+			newSoonArray.push (model.data.machines[model.selectedMachine].components[m].component);
+			console.log(newSoonArray);
+			newSoon=true;
+		//	alertPopulateSoon(model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
 		}
+
+//function alertPopulateNow (nAlerts) { 
+		//	var newNowArray = [];
+		//	newArray.push (nAlerts);
+		//	var newNowString = newNowArray.join(', ');
+		//}
 		
-		alert("Maintenance Due Soon On " + model.data.machines[model.selectedMachine].components[m].component.toUpperCase());
+		//function alertPopulateNow (nAlerts) { 
+		//	var newNowArray = [];
+		//	newArray.push (nAlerts);
+		//	var newNowString = newNowArray.join(', ');
+		//}
+
+
+		//function alertPopulateSoon (sAlerts) {
+		//	var newSoonArray = [];
+		//	newArray.push (sAlerts);
+		//	var newSoonString = newSoonArray.join(', ');
+		//}
+		
+		//alert("Maintenance Due Now On " + newNowArray + "and Maintenance Due Soon on" + newSoonArray);
 		
 		
 
@@ -209,7 +243,47 @@ function checkLifeCycle(){
 
 		
  	}
+ combinedAlert();
+ function combinedAlert (){
+ 	//newNow = false;
+ 	//newSoon = false;
+
+ 	if (newNow === true && newSoon === true) {
+var newNowString = newNowArray.join(', ');
+ 	var newSoonString = newSoonArray.join(', ');
+ 	alert("Maintenance due now on " + newNowString + ", and maintenance due soon on " + newSoonString + ".");
+ 	return;
+
+ }
+ 	if (newSoon === true) {
+//var newNowString = newNowArray.join(', ');
+ 	var newSoonString = newSoonArray.join(', ');
+ 	alert("Maintenance due soon on " + newSoonString +".");
+ 
+    return;
+ }
+
+ if (newNow === true) {
+var newNowString = newNowArray.join(', ');
+ 	//var newSoonString = newSoonArray.join(', ');
+ 	alert("Maintenance due now on " + newNowString + ".");
+ 
+ 	return;
+ }
+
+
+ else {
+ 		newNow = false;
+ 	newSoon = false;
+ }
+
+ 
+ }	
 }
+
+
+
+
 //model.data.machines[model.selectedMachine].components[i].hours
 
 //div class='hours' [m]='" + id + "_hours'
