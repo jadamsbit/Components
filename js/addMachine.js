@@ -31,6 +31,7 @@ function updateMachineListOutput(){
    			updateMachineListOutput();
    			updateMachineDetails();
    			initialize();
+   			checkLifeCycle();
  		});
 		
 	}
