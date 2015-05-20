@@ -5,6 +5,12 @@
 body{
 	background-color: black;
 }
+
+header {
+	text-align: center;
+	font-size: 2em;
+}
+
 .hours{
 	border: 1px solid black;
 	text-align: center;
@@ -52,12 +58,18 @@ h3{
 	margin-top: .2em;
 }
 #insertComp{
-	margin-top: .2em;
+	padding: .2em;
+	height: 2.5em;
 }
 
-#addComp{
-	margin-bottom: 2em;
+#out{
+	margin-bottom: .2em;
+	margin-top: 0;
+	width: 4em;
+	padding-right: 3.1em;
 }
+
+
 
 .earlyWarning {
 	background-color:yellow;
@@ -91,10 +103,11 @@ h3{
 	text-align: center;
 	vertical-align: center;
 	padding:.3em;
+	max-width: 55px;
 }
 
 .adjust{
-	margin-left: 1.5em;
+	margin-left: 1.25em;
 }
 
 .adjust button{
@@ -104,6 +117,16 @@ h3{
 .row {
   margin-right: 0px;
   margin-left: -11px;
+}
+
+@media(max-width: 700px){
+	#headingslg{
+		display: none;
+	}
+}
+
+.form-control{
+	float: left;
 }
 
 
