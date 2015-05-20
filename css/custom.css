@@ -49,26 +49,26 @@ h3{
 	font-weight: bold;
 }
 #newRoof{
-	margin-top: .2em;
+	margin-top: .4em;
 }
 #newComp{
-	margin-top: .2em;
+	margin-top: .4em;
 }
 #newProj{
-	margin-top: .2em;
+	margin-top: .4em;
 }
 #insertComp{
 	padding: .2em;
 	height: 2.5em;
+	margin-top: 5px;
 }
 
 #out{
 	margin-bottom: .2em;
-	margin-top: 0;
+	margin-top: 5px;
 	width: 4em;
 	padding-right: 3.1em;
 }
-
 
 
 .earlyWarning {
@@ -119,7 +119,7 @@ h3{
   margin-left: -11px;
 }
 
-@media(max-width: 700px){
+@media(max-width: 750px){
 	#headingslg{
 		display: none;
 	}
@@ -127,6 +127,22 @@ h3{
 
 .form-control{
 	float: left;
+	margin-bottom: 6px;
 }
 
+#compHead{
+	margin-left: -2em;
+}
 
+#hourHead{
+	margin-left: -1em;
+}
+
+#projHead{
+	margin-left: -1em;
+}
+
+.textPush{
+	margin-top: 10px;
+  	margin-right: 9px;
+}

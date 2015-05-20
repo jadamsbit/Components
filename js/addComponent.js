@@ -145,9 +145,7 @@ function generateLineItem (id, name, hours, projection){
 		insertComponent(id, rename, hours, projection);
 		$("#modal-id").modal("hide");
 		});
-		$("#" + id + "_proj").click(function(){
-		captureData(id, projection);
-		});
+		
 		$("#" + id + "_comp").click(function() {
 		var id = $(this).data("component");
 		var index = model.getComponentIndex(id);
