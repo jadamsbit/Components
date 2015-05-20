@@ -2,6 +2,7 @@ $( document ).ready(function() {
 	  // Handler for .ready() called.	
 	/*===== this will hide the fields for the add features area. =====*/
 	$('#showHide').hide();
+	$( "#hideWarnings" ).hide();
 
 	$( "#submit" ).click(function(evt) {
 		//get the input value
@@ -19,11 +20,19 @@ $( document ).ready(function() {
 		$("#showHide").show();
 	});
 
+	/*===== this is the function to hide the warningdiv =====*/
+	$( "#hideWarnings" ).click(function(evt) {
+		console.log("I was clicked");
+		$( "#warnings" ).toggle();
+	});
+
+
 	/*===== this is the function that will take in the user info and hide the fields and buuton and show the add button. =====*/
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
 		$("#showHide").hide();
 		generateOutput();
+		checkLifeCycle();
 	});
 
 	// Show/Hide for the Exit button
@@ -33,6 +42,9 @@ $( document ).ready(function() {
 	});
 });
 function calculate(input){
+		if(input == ""){
+               alert("You need to enter a number!");
+            }
 	//get the model
 	//loop thru each item in the model
 	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
@@ -118,6 +130,9 @@ function generateLineItem (id, name, hours, projection){
 		$( "#" + id + "_adjust button" ).click(function(evt) {
 		var id = Number($(this).data('button')); 
 		var newValue = Number($("#part-item-input-" + id).val());
+			if(newValue == ""){
+               alert("You need to enter a number!");
+            }
 		updateRecord(newValue, id);
 		updateOutput();
 		checkLifeCycle();
@@ -157,7 +172,10 @@ function updateRecord(newValue, componentID) {
 }
 
 function checkLifeCycle(){
- 	var newNowArray = [];
+	$( "#hideWarnings" ).hide();
+
+$( "#warnings" ).empty();
+	var newNowArray = [];
 	var newSoonArray = [];
 	var newSoon = false;
 	var newNow = false;
@@ -179,6 +197,8 @@ function checkLifeCycle(){
 			newNowArray.push (model.data.machines[model.selectedMachine].components[m].component);
 			console.log(newNowArray);
 			newNow=true;
+
+		
 			
 		}  
 
@@ -189,28 +209,49 @@ function checkLifeCycle(){
 			newSoonArray.push (model.data.machines[model.selectedMachine].components[m].component);
 			console.log(newSoonArray);
 			newSoon=true;
+		
 		}
+
+
+
 		
  	}
- 	
  combinedAlert();
  function combinedAlert (){
+
+ 	//newNow = false;
+ 	//newSoon = false;
+
  	if (newNow === true && newSoon === true) {
 var newNowString = newNowArray.join(', ');
  	var newSoonString = newSoonArray.join(', ');
- 	alert("Maintenance due now on " + newNowString + ", and maintenance due soon on " + newSoonString + ".");
+ 	$( "#warnings" ).empty();
+ 	$("#warnings").append("<div><p><span class='glyphicon glyphicon-fire'></span>!!!Maintenance due now on " + newNowString + ", and maintenance due soon on " + newSoonString + "!!!<span class='glyphicon glyphicon-fire'></span></p></div>");
+ 	$( "#hideWarnings" ).show();
+ 		$( "#warnings" ).removeClass( "warningSoon" );
+ 	$( "#warnings" ).addClass( "warningUrgent" );
  	return;
- }
 
+ }
  	if (newSoon === true) {
+//var newNowString = newNowArray.join(', ');
  	var newSoonString = newSoonArray.join(', ');
- 	alert("Maintenance due soon on " + newSoonString +".");
+ 	$( "#warnings" ).empty();
+ 	$("#warnings").append("<div></span><p><span class='glyphicon glyphicon-flash'></span>!!!Maintenance due soon on " + newSoonString + "!!!<span class='glyphicon glyphicon-flash'></span></p></div>");
+ $( "#hideWarnings" ).show();
+	$( "#warnings" ).removeClass( "warningUrgent" );
+ 	$( "#warnings" ).addClass( "warningSoon" );
     return;
  }
 
  if (newNow === true) {
 var newNowString = newNowArray.join(', ');
- 	alert("Maintenance due now on " + newNowString + ".");
+ 	//var newSoonString = newSoonArray.join(', ');
+ 	$( "#warnings" ).empty();
+ 	$("#warnings").append("<div><p><span class='glyphicon glyphicon-fire'></span>!!!Maintenance due now on " + newNowString + "!!!<span class='glyphicon glyphicon-fire'></span></p></div>");
+ $( "#hideWarnings" ).show();
+	$( "#warnings" ).removeClass( "warningSoon" );
+ 	$( "#warnings" ).addClass( "warningUrgent" );
  	return;
  }
 
@@ -218,8 +259,11 @@ var newNowString = newNowArray.join(', ');
  		newNow = false;
  	newSoon = false;
  }
+
+ 
  }	
 }
+
 function captureData(index, projection){
 	  var input = prompt("Enter Hours", projection);
 	  if(input !=null){

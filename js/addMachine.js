@@ -15,6 +15,8 @@ $( document ).ready(function() {
 		initialize();
 		$('#showHideMachine').hide();
 		$("#showMachineForm").show();
+		$( "#hideWarnings" ).hide();
+		$("#warnings").empty();
 
 	})
 });
@@ -33,6 +35,7 @@ function updateMachineListOutput(){
    			updateMachineListOutput();
    			updateMachineDetails();
    			initialize();
+   			checkLifeCycle();
  		});
 		
 	}
