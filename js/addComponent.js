@@ -6,7 +6,6 @@ $( document ).ready(function() {
 	$( "#submit" ).click(function(evt) {
 		//get the input value
 		var newValue = Number($("#input").val());
-		//console.log(newValue);
 		//run calculate
 		calculate(newValue);
 		//run update output
@@ -24,7 +23,7 @@ $( document ).ready(function() {
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
 		$("#showHide").hide();
-		generateOutput()
+		generateOutput();
 	});
 
 	// Show/Hide for the Exit button
@@ -32,9 +31,7 @@ $( document ).ready(function() {
 		$("#showHide").hide();
 		$("#addComp").show();
 	});
-
 });
-
 function calculate(input){
 	//get the model
 	//loop thru each item in the model
@@ -51,14 +48,11 @@ function calculate(input){
 }
 
 function updateOutput(){
-	//get the model
-    // console.log(model);
 	//loop thru each item in the model
 	for(var i=0; i < model.data.machines[model.selectedMachine].components.length; i++){
 		//update the corresponding id in html
 		var currentComponent = model.data.machines[model.selectedMachine].components[i];
 		$("#" + model.data.machines[model.selectedMachine].components[i].id + "_hours p").html(currentComponent['hours']);
-		//console.log("#" + model.components[i].component + "_hours p")
 	}
 }
 
@@ -105,33 +99,49 @@ function nuke (){
 	$("#part-item-input-").html("<h3>Update</h3>");
 	$("#adjust1").html("");
 
-	 $("#eqNum").html();
-	 $("#eqInfo").html();
-	 $("#eqISD").html();
+	$("#eqNum").html();
+	$("#eqInfo").html();
+	$("#eqISD").html();
 
 	$("#showMachineForm").click(function(evt){
-		$("#showMachineForm").hide();
-		$('#showHideMachine').show();
+	$("#showMachineForm").hide();
+	$('#showHideMachine').show();
 	});
 }
 
 	// Generates the information and the new containers.
 function generateLineItem (id, name, hours, projection){
-		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div class='comp col-lg-3 col-md-3 col-sm-3 col-xs-3' id='" + id + "_comp'><p>" + name + "</p> </div> <div class='hours col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-1 col-md-1 col-sm-1 col-xs-2' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='-24' max='10000' step='1'></input></div> <div class='adjust col-lg-3b col-md-3 col-sm-3 col-xs-2' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
+		$("#newRow").append("<div class='row' id='" + id + "_nRow'><a data-toggle='modal' href='#modal-id'><div class='comp col-lg-3 col-md-3 col-sm-3 col-xs-3' id='" + id + "_comp' data-component='"+ id +"'><p>" + name + "</p></div></a> <div class='hours col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-1 col-md-1 col-sm-1 col-xs-2' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='-24' max='10000' step='1'></input></div> <div class='adjust col-lg-3b col-md-3 col-sm-3 col-xs-2' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
 		console.log("#newRow");
-		// $("#component").append("<div class='comp' id='" + id + "_comp'><p>" + name + "</p> </div>");
-		// $("#hours").append("<div class='hours' id='" + id + "_hours'><p>" + hours + "</p> </div>");
-		// $("#projection").append("<div class='proj' id='" + id + "_proj'><p>" + projection + "</p> </div>");
-		// $("#part-item-input-").append("<div class='update' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='0' max='24' step='.25'></input></div>");
-		// $("#adjust1").append("<div class='adjust' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div>");
 		
-	$( "#" + id + "_adjust button" ).click(function(evt) {
+		
+		$( "#" + id + "_adjust button" ).click(function(evt) {
 		var id = Number($(this).data('button')); 
 		var newValue = Number($("#part-item-input-" + id).val());
 		updateRecord(newValue, id);
 		updateOutput();
 		checkLifeCycle();
 	});	
+		$("#saveChange").click(function() {
+		var id = $(this).data("component");
+		var rename = $("#modifyModalComponent[placeholder]").val();
+		var hours = $("#modifyModalHours[placeholder]").val();
+		var projection = $("#modifyModalProjection[placeholder]").val();
+		insertComponent(id, rename, hours, projection);
+		$("#modal-id").modal("hide");
+		});
+		$("#" + id + "_proj").click(function(){
+		captureData(id, projection);
+		});
+		$("#" + id + "_comp").click(function() {
+		var id = $(this).data("component");
+		var index = model.getComponentIndex(id);
+		console.log(id);
+		var name = model.data.machines[model.selectedMachine].components[index].component;
+		var hours = model.data.machines[model.selectedMachine].components[index].hours;
+		var projection = model.data.machines[model.selectedMachine].components[index].projection;
+		displayComponentInformationModal(id, name, hours, projection);
+		});
 }
 
 function updateRecord(newValue, componentID) {
@@ -185,40 +195,93 @@ function checkLifeCycle(){
  	
  combinedAlert();
  function combinedAlert (){
- 	
-
  	if (newNow === true && newSoon === true) {
 var newNowString = newNowArray.join(', ');
  	var newSoonString = newSoonArray.join(', ');
  	alert("Maintenance due now on " + newNowString + ", and maintenance due soon on " + newSoonString + ".");
  	return;
-
  }
- 	if (newSoon === true) {
 
+ 	if (newSoon === true) {
  	var newSoonString = newSoonArray.join(', ');
  	alert("Maintenance due soon on " + newSoonString +".");
- 
     return;
  }
 
  if (newNow === true) {
 var newNowString = newNowArray.join(', ');
- 	
  	alert("Maintenance due now on " + newNowString + ".");
- 
  	return;
  }
-
 
  else {
  		newNow = false;
  	newSoon = false;
  }
-
- 
  }	
 }
+function captureData(index, projection){
+	  var input = prompt("Enter Hours", projection);
+	  if(input !=null){
+	  	insertProjection(input, index);
+	  }
+}
+
+function displayComponentInformationModal(id, name, hours, projection){
+	console.log(name);
+	$("#modifyModalComponent").val(name);
+	$("#modifyModalHours").val(hours);
+	$("#modifyModalProjection").val(projection);
+	$("#saveChange").data("component",id);
+}
+
+function insertComponent(id, rename, hours, projection){
+	var index = model.getComponentIndex(id);
+	console.log(id);
+	model.data.machines[model.selectedMachine].components[index].component = rename;
+	model.data.machines[model.selectedMachine].components[index].hours = hours;
+	model.data.machines[model.selectedMachine].components[index].projection = projection;
+	console.log(rename);
+	nuke();
+	initialize();
+	updateOutput();
+	checkLifeCycle();
+}
+
+
+// function addComponent(id, name, hours, projection){
+// 	/* this sets up the model*/
+// 	var compName = $("#modifyModalComponent").val();
+// 	var compHours = $("#modifyModalHours").val();
+// 	var compProj = $("#modifyModalProjection").val();
+// 	var newIndex = model.data.machines[model.selectedMachine].components[index].component(id);
+	
+
+// 		/*===== this is going to prompt the user to enter the new name of the machine. =====*/
+	
+// 	//var changeIt = model.data.machines.machine;
+	
+// 		===== this is where the new name will be added to the JSON. =====
+// 	model.data.machines[model.selectedMachine].components[index].component = compName;
+// 	model.data.machines[model.selectedMachine].components[index].hours = compHours;
+// 	model.data.machines[model.selectedMachine].components[index].projection = compProj;
+// 	//console.log(model.data.machines[newIndex]);
+// 		/*===== this calls the functions to change the div and the list. =====*/
+// 	nuke();
+// 	initialize();
+// 	checkLifeCycle()
+// };
+//create a click handler to add divs with text fields to the modal
+
+//capture the data in the 3 targeted cells 
+//add captured data to the cells
+//capture the data input in the text fields
+//captured input data to the JSON
+//retrieve data from the JSON and add to cells
+//refresh the page data
+
+
+
 
 
 

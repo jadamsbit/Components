@@ -47,10 +47,6 @@
 							<button id="saveButton">Save</button>
 						</li>
 
-						<li>
-							<button id="resetButton">Reset</button>
-						</li>
-
 					</ul>
 
 				</div>
@@ -67,6 +63,37 @@
 	      
 	    </ul>
 	</div>
+	<div class="modal fade" id="modal-id">
+	    	<div class="modal-dialog">
+	    		<div class="modal-content">
+	    			<div class="modal-header">
+	    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    				<h4 class="modal-title">Component Change Out</h4>
+	    			</div>
+	    			<div class="modal-body">
+	    				  <!-- add a component field -->
+	    				<div>Modify Component</div>
+	    				<div>
+	    					<input type="text" name=""  id="modifyModalComponent" class="form-control" placeholder="o" required="required" title="">
+	    				</div>
+	    				<!-- add an hours field -->
+	    				<div>Modify Hours</div>
+	    				<div>
+	    					<input type="text" name=""   id ="modifyModalHours" class="form-control" placeholder="o" required="required" title="">
+	    				</div>
+	    				<!-- add a projection field -->
+	    				<div>Modify Projection Hours</div>
+	    				<div>
+	    					<input type="text" name=""   id="modifyModalProjection" class="form-control" placeholder="o" required="required" title="">
+	    				</div>
+	    			</div>
+	    			<div class="modal-footer">
+	    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    				<button type="button" data-component="" id="saveChange" class="btn btn-primary">Save changes</button>
+	    			</div>
+	    		</div><!-- /.modal-content -->
+	    	</div><!-- /.modal-dialog -->
+	    </div>
 </div>
 <div class="container">
 	<div class="row" id="showHideMachine">
@@ -82,7 +109,7 @@
 			
 			<div class="col-lg-3">
 				<!-- <div class="col-lg-4 textPush">In Service Date</div> -->
-				<div class="col-lg-6"><input type="text" name="" id="newISD" class="form-control" placeholder="In Service Date" required="required" title=""></div>
+				<div class="col-lg-6"><input type="date" name="" id="newISD" class="form-control" placeholder="In Service Date" required="required" title=""></div>
 			</div> <!-- this is the end of the third col for the input -->
 			<div>
 				<button type="button" class="btn btn-info" id="addMachine">Add Machine</button>
@@ -99,7 +126,7 @@
 				<!-- this is the end of the first col of the input div -->		
 					<input type="text" name="" id="newYMMEdit" class="form-control" placeholder="Year/Make/Model" required="required" title="">
 				<!-- this is the end of the second col of the input div -->
-					<input type="text" name="" id="newISDEdit" class="form-control" placeholder="In Service Date" required="required" title="">
+					<input type="date" name="" id="newISDEdit" class="form-control" placeholder="In Service Date" required="required" title="">
 					<div class="modal-footer">
 				<button type="button" class="btn btn-info btn-sm" id="enterNew" data-machine = "0" data-dismiss = "modal">ok</button>
 				<button type="button" class="btn btn-info btn-sm" data-dismiss = "modal">cancel</button>
