@@ -69,6 +69,20 @@ h3{
 	color: white;
 }
 
+.warningUrgent {
+	background-color:red;
+	color:white; 
+	font-family:Courier, sans-serif; 
+	font-size:1.5em;
+}
+
+.warningSoon {
+	background-color:yellow;
+	color:red; 
+	font-family:Courier, sans-serif; 
+	font-size:1.5em;
+}
+
 .update{
 	margin-left: 0;
 }
