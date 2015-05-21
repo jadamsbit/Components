@@ -1,10 +1,7 @@
 $( document ).ready(function() {
 		  /*===== this will hide the fields for the add features area. =====*/
 	$('#showHideMachine').hide();
-	$("#addComp").hide();
-	$("#submit").hide();
-	$(".hours").hide();
-	$(".comp").hide();
+	
 
 	/*===== this is the date picker for the validation on the edit part of the In Service Date. =====*/
 	$( "#newISDEdit" ).datepicker();
@@ -20,9 +17,9 @@ $( document ).ready(function() {
 	});
 
 	$("#addMachine").click(function(evt) {
-		$('#entry').show();
+	
 		$('#compAdd').show();
-
+		
 		var newMachId = $("#newMach").val();
 		var newYMMId = $("#newYMM").val();
 		var newISDId = $("#newISD").val();
@@ -36,6 +33,7 @@ $( document ).ready(function() {
 
 		if (valOK) {
 		var newIndex = model.data.machines.length + 1;
+
 	
 		model.data.machines.push({"id": newIndex ,"machine":newMachId, "ymm":newYMMId, "isd":newISDId,"components":[]});
 		
@@ -48,7 +46,7 @@ $( document ).ready(function() {
 		
 
 		initialize();
-	
+		$('#entry').hide();
 		$('#showHideMachine').hide();
 		$("#showMachineForm").show();
 		$( "#hideWarnings" ).hide();
@@ -57,7 +55,7 @@ $( document ).ready(function() {
 		 newMach.value= newMach.defaultValue;
 		   newISD.value= newISD.defaultValue;
 	}
-
+$("#addComp").show();
 	})
 			/*===== this is the cancel button in the add machine area. =====*/
 		$("#cancelMach").click(function(evt) {
@@ -86,8 +84,6 @@ function updateMachineListOutput(){
    			checkLifeCycle();
    			$("#addComp").show();
 			$("#submit").show();
-			$(".hours").show();
-			$(".comp").show();
  		});
 		
 	}
