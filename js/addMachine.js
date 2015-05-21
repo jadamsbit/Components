@@ -2,21 +2,52 @@ $( document ).ready(function() {
 		  /*===== this will hide the fields for the add features area. =====*/
 	$('#showHideMachine').hide();
 
+	$("#enterNew").click(function() {
+		var id = $(this).data("machine");
+		console.log(id);
+		changeMachName(id);
+
+		
+	});
+
 	$("#addMachine").click(function(evt) {
+		$('#entry').show();
+		$('#compAdd').show();
+
 		var newMachId = $("#newMach").val();
-		var newYMM = $("#newYMM").val();
-		var newISD = $("#newISD").val();
+		var newYMMId = $("#newYMM").val();
+		var newISDId = $("#newISD").val();
+		var valOK = true;
+		for (i=0; i<model.data.machines.length; i++){
+			if (newMachId === model.data.machines[i].machine){
+				alert ("You must enter a unique ID");
+				valOK = false;
+			}
+		}
+
+		if (valOK) {
 		var newIndex = model.data.machines.length + 1;
-		model.data.machines.push({"id": newIndex ,"machine":newMachId, "ymm":newYMM, "isd":newISD,"components":[]});
+	
+		model.data.machines.push({"id": newIndex ,"machine":newMachId, "ymm":newYMMId, "isd":newISDId,"components":[]});
+		
+
 		model.selectedMachine = model.getSelectedItem(newIndex);
 		nuke();
 		updateMachineListOutput();
+
 		updateMachineDetails();
+		
+
 		initialize();
+	
 		$('#showHideMachine').hide();
 		$("#showMachineForm").show();
 		$( "#hideWarnings" ).hide();
 		$("#warnings").empty();
+		newYMM.value= newYMM.defaultValue;
+		 newMach.value= newMach.defaultValue;
+		   newISD.value= newISD.defaultValue;
+	}
 
 	})
 });
@@ -59,13 +90,10 @@ function generateNewMachineDiv (id,name,newYMM,newISD){
 	}
 	else{
 		$("#newMachName").show();
+		$('#entry').show();
+		$('#compAdd').show();
 	}
-	$("#enterNew").click(function() {
-		var id = $(this).data("machine");
-		console.log(id);
-		changeMachName(id);
-		
-	});
+	
 }
 
 	/*===== this is the function that will open a prompt so that you can enter the new name and push it to the JSON. =====*/
@@ -86,10 +114,13 @@ function changeMachName(id){
 	model.data.machines[newIndex].machine = machName;
 	model.data.machines[newIndex].ymm = newYMM;
 	model.data.machines[newIndex].isd = newISD;
+
+
 	//console.log(model.data.machines[newIndex]);
 		/*===== this calls the functions to change the div and the list. =====*/
 	updateMachineDetails();
 	updateMachineListOutput();
+
 };
 
 function updateMachineDetails (){
