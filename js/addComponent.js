@@ -20,6 +20,7 @@ $( document ).ready(function() {
 	$( "#addComp" ).click(function(evt) {
 		$("#addComp").hide();
 		$("#showHide").show();
+
 	});
 
 	/*===== this is the function to hide the warningdiv =====*/
@@ -33,11 +34,11 @@ $( document ).ready(function() {
 		$("#addComp").show();
 		$("#showHide").hide();
 		$('#entry').show();
-		//newComp.value= newComp.defaultValue;
-		//newRoof.value= newRoof.defaultValue;
-		//newProj.value= newProj.defaultValue;
 		generateOutput();
 		checkLifeCycle();
+		newComp.value= newComp.defaultValue;
+		newRoof.value= newRoof.defaultValue;
+		newProj.value= newProj.defaultValue;
 		
 	});
 
@@ -172,6 +173,7 @@ function generateLineItem (id, name, hours, projection){
 		var id = $(this).data("component");
 		var index = model.getComponentIndex(id);
 		killIt(index);
+		checkLifeCycle();
 		// delete model.data.machines[model.selectedMachine].components[index].component;
 		// delete model.data.machines[model.selectedMachine].components[index].hours;
 		// delete model.data.machines[model.selectedMachine].components[index].projection;
