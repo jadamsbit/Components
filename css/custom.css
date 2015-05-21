@@ -1,14 +1,24 @@
+
 .container{
 	width: 95%;
-	background-color: grey;
 }
+
 body{
-	background-color: black;
+	background-color: lightgray;
 }
+
 
 header {
 	text-align: center;
 	font-size: 2em;
+
+.mainContainer{
+	background-image: url("../images/legal-paper.jpg");
+	padding-left: 3em;
+	background-size:100%;
+	width: 90%;
+	margin:0 auto;
+
 }
 
 .hours{
@@ -25,9 +35,22 @@ header {
 	text-align: center;
 	padding: 1px;
 }
+
+h1{
+	color:brown;
+}
+
+h2{
+	color:brown;
+}
+
 h3{
 	text-align: center;
+	color:brown;
 }
+
+
+
 .proj{
 	border: 1px solid black;
 	text-align: center;
@@ -48,6 +71,12 @@ h3{
 	color:red;
 	font-weight: bold;
 }
+
+#showHideMachine{
+	padding-left: 3em;
+	margin-top: .5em;
+}
+
 #newRoof{
 	margin-top: .4em;
 }
@@ -120,6 +149,7 @@ h3{
   margin-left: -11px;
 }
 
+
 @media(max-width: 750px){
 	#headingslg{
 		display: none;
@@ -129,6 +159,10 @@ h3{
 .form-control{
 	float: left;
 	margin-bottom: 6px;
+
+.dropdown {
+	padding-left: 3em;
+
 }
 
 #compHead{
