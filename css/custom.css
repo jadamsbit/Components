@@ -1,10 +1,19 @@
-.container{
+.container {
 	width: 90%;
-	background-color: grey;
 }
+
 body{
-	background-color: black;
+	background-color: lightgray;
 }
+
+.mainContainer{
+	background-image: url("../images/legal-paper.jpg");
+	padding-left: 3em;
+	background-size:100%;
+	width: 90%;
+	margin:0 auto;
+}
+
 .hours{
 	border: 1px solid black;
 	text-align: center;
@@ -19,9 +28,22 @@ body{
 	text-align: center;
 	padding: 1px;
 }
+
+h1{
+	color:brown;
+}
+
+h2{
+	color:brown;
+}
+
 h3{
 	text-align: center;
+	color:brown;
 }
+
+
+
 .proj{
 	border: 1px solid black;
 	text-align: center;
@@ -42,6 +64,12 @@ h3{
 	color:red;
 	font-weight: bold;
 }
+
+#showHideMachine{
+	padding-left: 3em;
+	margin-top: .5em;
+}
+
 #newRoof{
 	margin-top: .2em;
 }
@@ -106,4 +134,7 @@ h3{
   margin-left: -11px;
 }
 
+.dropdown {
+	padding-left: 3em;
+}
 
