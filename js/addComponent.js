@@ -3,6 +3,8 @@ $( document ).ready(function() {
 	/*===== this will hide the fields for the add features area. =====*/
 	$('#showHide').hide();
 	$( "#hideWarnings" ).hide();
+		$('#entry').hide();
+		$('#compAdd').hide();
 
 	$( "#submit" ).click(function(evt) {
 		//get the input value
@@ -22,7 +24,6 @@ $( document ).ready(function() {
 
 	/*===== this is the function to hide the warningdiv =====*/
 	$( "#hideWarnings" ).click(function(evt) {
-		console.log("I was clicked");
 		$( "#warnings" ).toggle();
 	});
 
@@ -31,8 +32,12 @@ $( document ).ready(function() {
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
 		$("#showHide").hide();
+		newComp.value= newComp.defaultValue;
+		newRoof.value= newRoof.defaultValue;
+		newProj.value= newProj.defaultValue;
 		generateOutput();
 		checkLifeCycle();
+		
 	});
 
 	// Show/Hide for the Exit button
@@ -49,13 +54,9 @@ function calculate(input){
 	//loop thru each item in the model
 	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
 		var oldValue = Number(model.data.machines[model.selectedMachine].components[m].hours); // at item 0, hours = 2,318 String
-		// console.log("old: " + oldValue);
-		// console.log("input: " + input);
 		var whatEver = input + oldValue; // take input, 5 (integer), add to 2,318 String???
-		// console.log("was: " + model.components[m].hours);
-		// console.log("new: " + whatEver);
 		model.data.machines[model.selectedMachine].components[m].hours = whatEver.toString(); // set hours to whatever value
-		// console.log("now: " + model.components[m].hours);
+		
 	}
 }
 
@@ -122,6 +123,7 @@ function nuke (){
 }
 
 	// Generates the information and the new containers.
+// Generates the information and the new containers.
 function generateLineItem (id, name, hours, projection){
 		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div data-component='"+ id +"'id='" + id + "_glyph' style='float:left' class=' size glyphicon glyphicon-trash col-lg-1 col-md-1 col-sm-1 col-xs-1'></div><a data-toggle='modal' href='#modal-id'><div class='comp col-lg-3 col-md-3 col-sm-3 col-xs-3' id='" + id + "_comp' data-component='"+ id +"'><p>" + name + "</p></div></a> <div class='hours col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-1 col-md-1 col-sm-1 col-xs-2' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='-24' max='10000' step='1'></input></div> <div class='adjust col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
 		console.log("#newRow");
@@ -235,7 +237,7 @@ var newNowString = newNowArray.join(', ');
  	$( "#warnings" ).empty();
  	$("#warnings").append("<div><p><span class='glyphicon glyphicon-fire'></span>!!!Maintenance due now on " + newNowString + ", and maintenance due soon on " + newSoonString + "!!!<span class='glyphicon glyphicon-fire'></span></p></div>");
  	$( "#hideWarnings" ).show();
- 		$( "#warnings" ).removeClass( "warningSoon" );
+ 	$( "#warnings" ).removeClass( "warningSoon" );
  	$( "#warnings" ).addClass( "warningUrgent" );
  	return;
 
@@ -245,7 +247,7 @@ var newNowString = newNowArray.join(', ');
  	var newSoonString = newSoonArray.join(', ');
  	$( "#warnings" ).empty();
  	$("#warnings").append("<div></span><p><span class='glyphicon glyphicon-flash'></span>!!!Maintenance due soon on " + newSoonString + "!!!<span class='glyphicon glyphicon-flash'></span></p></div>");
- $( "#hideWarnings" ).show();
+ 	$( "#hideWarnings" ).show();
 	$( "#warnings" ).removeClass( "warningUrgent" );
  	$( "#warnings" ).addClass( "warningSoon" );
     return;
@@ -256,7 +258,7 @@ var newNowString = newNowArray.join(', ');
  	//var newSoonString = newSoonArray.join(', ');
  	$( "#warnings" ).empty();
  	$("#warnings").append("<div><p><span class='glyphicon glyphicon-fire'></span>!!!Maintenance due now on " + newNowString + "!!!<span class='glyphicon glyphicon-fire'></span></p></div>");
- $( "#hideWarnings" ).show();
+ 	$( "#hideWarnings" ).show();
 	$( "#warnings" ).removeClass( "warningSoon" );
  	$( "#warnings" ).addClass( "warningUrgent" );
  	return;
@@ -279,7 +281,7 @@ function captureData(index, projection){
 }
 
 function displayComponentInformationModal(id, name, hours, projection){
-	console.log(name);
+	
 	$("#modifyModalComponent").val(name);
 	$("#modifyModalHours").val(hours);
 	$("#modifyModalProjection").val(projection);
@@ -288,11 +290,11 @@ function displayComponentInformationModal(id, name, hours, projection){
 
 function insertComponent(id, rename, hours, projection){
 	var index = model.getComponentIndex(id);
-	console.log(id);
+	
 	model.data.machines[model.selectedMachine].components[index].component = rename;
 	model.data.machines[model.selectedMachine].components[index].hours = hours;
 	model.data.machines[model.selectedMachine].components[index].projection = projection;
-	console.log(rename);
+	
 	updateUi();
 	checkLifeCycle();
 }
@@ -307,40 +309,4 @@ function updateUi(){
 		updateOutput();	
 		updateMachineListOutput();	
 }
-
-// function addComponent(id, name, hours, projection){
-// 	/* this sets up the model*/
-// 	var compName = $("#modifyModalComponent").val();
-// 	var compHours = $("#modifyModalHours").val();
-// 	var compProj = $("#modifyModalProjection").val();
-// 	var newIndex = model.data.machines[model.selectedMachine].components[index].component(id);
-	
-
-// 		/*===== this is going to prompt the user to enter the new name of the machine. =====*/
-	
-// 	//var changeIt = model.data.machines.machine;
-	
-// 		===== this is where the new name will be added to the JSON. =====
-// 	model.data.machines[model.selectedMachine].components[index].component = compName;
-// 	model.data.machines[model.selectedMachine].components[index].hours = compHours;
-// 	model.data.machines[model.selectedMachine].components[index].projection = compProj;
-// 	//console.log(model.data.machines[newIndex]);
-// 		/*===== this calls the functions to change the div and the list. =====*/
-// 	nuke();
-// 	initialize();
-// 	checkLifeCycle()
-// };
-//create a click handler to add divs with text fields to the modal
-
-//capture the data in the 3 targeted cells 
-//add captured data to the cells
-//capture the data input in the text fields
-//captured input data to the JSON
-//retrieve data from the JSON and add to cells
-//refresh the page data
-
-
-
-
-
 
