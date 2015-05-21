@@ -32,9 +32,10 @@ $( document ).ready(function() {
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
 		$("#showHide").hide();
-		newComp.value= newComp.defaultValue;
-		newRoof.value= newRoof.defaultValue;
-		newProj.value= newProj.defaultValue;
+		$('#entry').show();
+		//newComp.value= newComp.defaultValue;
+		//newRoof.value= newRoof.defaultValue;
+		//newProj.value= newProj.defaultValue;
 		generateOutput();
 		checkLifeCycle();
 		
