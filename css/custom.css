@@ -1,6 +1,7 @@
 
 .container{
-	width: 95%;
+	width: 99%;
+	margin-left: -1.2em;
 }
 
 body{
@@ -11,14 +12,19 @@ body{
 header {
 	text-align: center;
 	font-size: 2em;
-
-.mainContainer{
+}
+.mainCont{
 	background-image: url("../images/legal-paper.jpg");
 	padding-left: 3em;
 	background-size:100%;
 	width: 90%;
 	margin:0 auto;
 
+
+}
+
+.adjust{
+	margin-left: 3px;
 }
 
 .hours{
@@ -28,6 +34,14 @@ header {
 	color:#000000;
 	padding: 1px;
 }
+
+.addHours{
+text-align: center;
+	font-weight: bold;
+	color:#000000;
+	padding: 1px;
+}
+
 .comp{
 	border: 1px solid black;
 	font-weight: bold;
@@ -135,9 +149,9 @@ h3{
 	max-width: 45px;
 }
 
-.adjust{
+/*.adjust{
 	margin-left: 1.25em;
-}
+}*/
 
 .adjust button{
 	height: 2.3em;
@@ -145,8 +159,8 @@ h3{
 }
 
 .row {
-  margin-right: 0px;
-  margin-left: -11px;
+  	margin-right: -11px;
+	margin-left: -16px;
 }
 
 
@@ -189,3 +203,6 @@ h3{
 .size{
 	width:3em;
 }
+
+
+
