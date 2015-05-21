@@ -6,6 +6,7 @@
 		<title>Component Tracing</title>
 
 		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css"/> <!-- this is for the date picker to have style. -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
 
@@ -110,7 +111,7 @@
 			
 			<div class="col-lg-3">
 				<!-- <div class="col-lg-4 textPush">In Service Date</div> -->
-				<div class="col-lg-6"><input type="date" name="" id="newISD" class="form-control" placeholder="In Service Date" required="required" title=""></div>
+				<div class="col-lg-6"><input type="text" name="" id="newISD" class="form-control" placeholder="In Service Date" required="required" title=""></div>
 			</div> <!-- this is the end of the third col for the input -->
 			<div>
 				<button type="button" class="btn btn-info" id="addMachine">Add Machine</button>
@@ -127,7 +128,7 @@
 				<!-- this is the end of the first col of the input div -->		
 					<input type="text" name="" id="newYMMEdit" class="form-control" placeholder="Year/Make/Model" required="required" title="">
 				<!-- this is the end of the second col of the input div -->
-					<input type="date" name="" id="newISDEdit" class="form-control" placeholder="In Service Date" required="required" title="">
+					<input type="text" name="" id="newISDEdit" class="form-control" placeholder="In Service Date" required="required" title="">
 					<div class="modal-footer">
 				<button type="button" class="btn btn-info btn-sm" id="enterNew" data-machine = "0" data-dismiss = "modal">ok</button>
 				<button type="button" class="btn btn-info btn-sm" data-dismiss = "modal">cancel</button>
@@ -250,6 +251,9 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<!-- the next two are for the datepicker that is used for validation. -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/model.js"></script>
 		<script type="text/javascript" src="js/ajax.js"></script>
 		<script type="text/javascript" src="js/addMachine.js"></script> 

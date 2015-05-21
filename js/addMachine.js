@@ -1,6 +1,15 @@
 $( document ).ready(function() {
 		  /*===== this will hide the fields for the add features area. =====*/
 	$('#showHideMachine').hide();
+	$("#addComp").hide();
+	$("#submit").hide();
+	$(".hours").hide();
+	$(".comp").hide();
+
+	/*===== this is the date picker for the validation on the edit part of the In Service Date. =====*/
+	$( "#newISDEdit" ).datepicker();
+		/*===== this is the call for the date picker on the In Service Date. ======*/
+	$( "#newISD" ).datepicker();
 
 	$("#addMachine").click(function(evt) {
 		var newMachId = $("#newMach").val();
@@ -36,6 +45,10 @@ function updateMachineListOutput(){
    			updateMachineDetails();
    			initialize();
    			checkLifeCycle();
+   			$("#addComp").show();
+			$("#submit").show();
+			$(".hours").show();
+			$(".comp").show();
  		});
 		
 	}
