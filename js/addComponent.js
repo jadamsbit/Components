@@ -52,16 +52,25 @@ function calculate(input){
 		if(input == ""){
                alert("You need to enter a number!");
             }
+        if (input>=1 && input<=200) {			//*validate that the manual entry is within specs**//
+
 	//get the model
 	//loop thru each item in the model
 	for(var m=0; m < model.data.machines[model.selectedMachine].components.length; m++){ // loop thru all items
 		var oldValue = Number(model.data.machines[model.selectedMachine].components[m].hours); // at item 0, hours = 2,318 String
+		// console.log("old: " + oldValue);
+		// console.log("input: " + input);
 		var whatEver = input + oldValue; // take input, 5 (integer), add to 2,318 String???
+		// console.log("was: " + model.components[m].hours);
+		// console.log("new: " + whatEver);
 		model.data.machines[model.selectedMachine].components[m].hours = whatEver.toString(); // set hours to whatever value
-		
+		// console.log("now: " + model.components[m].hours);
 	}
-}
 
+		}else{
+		       alert("Must be between 1 and 200")		//****Issue an alert if a number greater than 200 is manually entered***//
+		       return false}
+}
 function updateOutput(){
 	//loop thru each item in the model
 	for(var i=0; i < model.data.machines[model.selectedMachine].components.length; i++){
