@@ -1,5 +1,5 @@
 .container{
-	width: 90%;
+	width: 95%;
 	background-color: grey;
 }
 body{
@@ -96,14 +96,14 @@ h3{
 }
 
 .update{
-	margin-left: 0;
+	margin-left: -1em;
 }
 
 .update input{
 	text-align: center;
 	vertical-align: center;
 	padding:.3em;
-	max-width: 55px;
+	max-width: 45px;
 }
 
 .adjust{
@@ -112,6 +112,7 @@ h3{
 
 .adjust button{
 	height: 2.3em;
+
 }
 
 .row {
@@ -145,4 +146,12 @@ h3{
 .textPush{
 	margin-top: 10px;
   	margin-right: 9px;
+}
+.glyphicon-trash{
+	color:#ffd633;
+	padding-top:.75em;
+	padding-right: .75em;
+}
+.size{
+	width:3em;
 }
