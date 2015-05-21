@@ -59,6 +59,14 @@ $( document ).ready(function() {
 	}
 
 	})
+			/*===== this is the cancel button in the add machine area. =====*/
+		$("#cancelMach").click(function(evt) {
+			nuke();
+   			updateMachineListOutput();
+   			updateMachineDetails();
+   			initialize();
+   			$('#showHideMachine').hide();
+		});
 });
 
 function updateMachineListOutput(){
