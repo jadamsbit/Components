@@ -1,0 +1,84 @@
+
+
+	<div id="headingslg">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<h2 style="text-align:center">Component</h2>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<h2 style="text-align:center">Hours</h2>
+				</div>	
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<h2>Projection</h2>
+				</div>
+		</div>	
+		<div id="headingssm">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<h4 style="text-align:center">Component</h4>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<h4 style="text-align:center">Hours</h4>
+				</div>	
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<h4>Projection</h4>
+				</div>
+		</div>	
+		<div id="headingsph">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<span class="glyphicon glyphicon-copyright-mark"aria-hidden="true"></span>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<span class="glyphicon glyphicon-hourglass"aria-hidden="true"></span>
+				</div>	
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<span class="glyphicon glyphicon-wrench"aria-hidden="true"></span>
+				</div>
+		</div>
+
+
+
+
+@media(max-width: 1200px ){
+	#headingslg{
+		display:none;
+	}
+	#headingssm{
+		display:block;
+		font-weight: bold;
+		text-align: left;
+	}
+	#headingsph{
+		display: none;
+	}
+
+}
+@media(min-width: 1200px){
+	#headingssm{
+		display: none;
+		}
+		#headingsph{
+			display: none;
+		}
+}
+@media(max-width: 700px){
+	#headingssm{
+		display: none;
+	}
+}
+@media(max-width: 699px){
+	#headingsph{
+		display:block;
+	}
+}
+
+
+var hasMach = function(machine) {
+    var i = null;
+    for (i = 0; machines.length > i; i += 1) {
+        if (machines[i].machine === newMachId) {
+            return true;
+            window.alert:("This machine already exists!!!");
+        }
+    }
+     
+    return false;
+};
