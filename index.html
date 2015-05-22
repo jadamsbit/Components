@@ -1,4 +1,4 @@
-<html>
+<html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,6 +6,7 @@
 		<title>Component Tracing</title>
 
 		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css"/> <!-- this is for the date picker to have style. -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
 
@@ -15,57 +16,254 @@
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="js/ajax.js"></script>
-
 		<style>
-
 			#main-menu {
 				
 			}
-
 			#main-menu ul {
 				margin: 0;
 				padding: 0;
 				list-style-type: none;
 				text-align: center;
 			}
-
 			#main-menu li { 
 				display: inline; 
 			}
-
 		</style>
-
 	</head>
-<body>
-	<div id="main-menu" class="container">
+	<body>
+		<div class="mainCont">
 
-		<div class="row-fluid">
+		<div id="main-menu" class="container">
+			<header>Component Tracing</header>
 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="row-fluid">
 
-				<ul>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-					<li>
-						<button id="loadButton">Load</button>
-					</li>
+					<ul>
 
-					<li>
-						<button id="saveButton">Save</button>
-					</li>
+						<li>
+							<button id="loadButton">Load</button>
+						</li>
 
-					<li>
-						<button id="resetButton">Reset</button>
-					</li>
+						<li>
+							<button id="saveButton">Save</button>
+						</li>
 
-				</ul>
+					</ul>
+
+				</div>
 
 			</div>
 
-		</div>
-
 	</div>
+	<div class="container" id="mainContainer">
+	
+	<div class="dropdown">
+	    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Add / Select Machine
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu" id="machineSelector" role="menu" aria-labelledby="menu1">
+	      
+	    </ul>
+	</div>
+	<div class="modal fade" id="modal-id">
+	    	<div class="modal-dialog">
+	    		<div class="modal-content">
+	    			<div class="modal-header">
+	    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    				<h4 class="modal-title">Component Change Out</h4>
+	    			</div>
+	    			<div class="modal-body">
+	    				  <!-- add a component field -->
+	    				<div>Modify Component</div>
+	    				<div>
+	    					<input type="text" name=""  id="modifyModalComponent" class="form-control" placeholder="o" required="required" title="">
+	    				</div>
+	    				<!-- add an hours field -->
+	    				<div>Modify Hours</div>
+	    				<div>
+	    					<input type="text" name=""   id ="modifyModalHours" class="form-control" placeholder="o" required="required" title="">
+	    				</div>
+	    				<!-- add a projection field -->
+	    				<div>Modify Projection Hours</div>
+	    				<div>
+	    					<input type="text" name=""   id="modifyModalProjection" class="form-control" placeholder="o" required="required" title="">
+	    				</div>
+	    			</div>
+	    			<div class="modal-footer">
+	    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    				<button type="button" data-component="" data-dismiss="modal" aria-hidden="true" id="saveChange" class="btn btn-primary">Save changes</button>
+	    			</div>
+	    		</div><!-- /.modal-content -->
+	    	</div><!-- /.modal-dialog -->
+	    </div>
+</div>
+<div class="container">
+	<div class="row" id="showHideMachine">
+			<div class="col-lg-3">
+				<!-- <div class="col-lg-4 textPush">New Machine ID</div> -->
+				<div class="col-lg-6"><input type="text" name="" id="newMach" class="form-control" placeholder="New Machine ID" required="required" title=""></div>
+			</div> <!-- this is the end of the first col of the input div -->
+			
+			<div class="col-lg-3">
+				<!-- <div class="col-lg-4 textPush">Year/Make/Model</div> -->
+				<div class="col-lg-6"><input type="text" name="" id="newYMM" class="form-control" placeholder="Year/Make/Model" required="required" title=""></div>
+			</div> <!-- this is the end of the second col of the input div -->
+			
+			<div class="col-lg-3">
+				<!-- <div class="col-lg-4 textPush">In Service Date</div> -->
+				<div class="col-lg-6"><input type="text" name="" id="newISD" class="form-control" placeholder="In Service Date" required="required" title=""></div>
+			</div> <!-- this is the end of the third col for the input -->
+			<div>
+				<button type="button" class="btn btn-info" id="addMachine">Add Machine</button>
+				<button type="button" class="btn btn-info" id="cancelMach">Cancel</button>
+			</div>
+	</div>
+</div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+  		
+    	<div class="modal-content">	
+    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<div>
+					<input type="text" name="" id="newMachEdit" class="form-control" placeholder="Machine Name" required="required" title="">
+				<!-- this is the end of the first col of the input div -->		
+					<input type="text" name="" id="newYMMEdit" class="form-control" placeholder="Year/Make/Model" required="required" title="">
+				<!-- this is the end of the second col of the input div -->
+					<input type="text" name="" id="newISDEdit" class="form-control" placeholder="In Service Date" required="required" title="">
+					<div class="modal-footer">
+				<button type="button" class="btn btn-info btn-sm" id="enterNew" data-machine = "0" data-dismiss = "modal">ok</button>
+				<button type="button" class="btn btn-info btn-sm" data-dismiss = "modal">cancel</button>
+			</div> <!-- this is the end of the modal footer -->
+		</div>
+	</div>
+  </div>
+</div>
 
+<div class="container" id="machineContainer">
+
+<!-- add machines to this div -->
+<div class="row" id="machine-id">
+	<!-- information needed for each machine -->
+	<div class="container" id="dataDiv">
+		<div class="row">
+				<h1 class="col-lg-3" id="eqNum"></h1>
+			<!-- these will change with javascript -->
+			<h2 class="col-lg-3" id="eqInfo"></h2>
+
+			<h2 class="col-lg-3" id="eqISD"></h2>			
+		</div><!--End of Row -->
+
+		<div class="container" style="margin-left:0px; padding-left:0%;padding-right:0%;">
+<div class="row">
+	<button style="float:right" type="button" class="btn btn-info" id="hideWarnings">Show/Hide Warnings</button>
+</div>
+	<div id="warnings" class="row" style="margin-left:0; margin-bottom:2px; border-radius:10px;">
+		
+
+			<!--<span style="font-size:2em; color:red;" class='glyphicon glyphicon-warning-sign'></span>
+			<span style="float:right; font-size:2em; color:red;" class='glyphicon glyphicon-warning-sign'></span>-->
+		</div>
+	</div>
+	<div id="headingslg">
+		<div class="row">
+				<div class=" size col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+
+						<h2 style="text-align:center" id="compHead">Component</h2>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<h2 style="text-align:center" id="hourHead">Hours</h2>
+				</div>	
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<h2 id="projHead">Projection</h2>
+				</div>
+			</div>
+		</div>  <!--End of Row -->
+		<div class="row" id="newRow">
+		<div class="row" id="rowTwo">
+			<div class=" size col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="component"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="hours"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="projection"></div>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" id="part-item-input-"></div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<div style="height: 4em;"></div>
+				<div id="adjust1"></div>
+			</div>		
+		</div>	
+	</div><!-- End of Row  -->	
+
+	<div class="row" id="entry">
+		<div class="col-lg-2">
+			<div class="comp"><p>Hours Worked</p></div>
+		</div>
+		<div class="col-lg-2">
+			<div class="addhours clearfix"><input type="number" name="" id="input" class="form-control" value="1" min="1" max="24" step=".25" required="required" title=""></div>
+		</div>
+		<div class="col-lg-1">
+		<div><button type="button" class="btn btn-info" id="submit">Submit</button></div>
+	</div>
+	</div> <!--   End of Row 3 -->
+	
+	<!-- this is the spot for the add component feature. -->
+	<div class="row" id="compAdd">
+		<div class="feature">
+			<button type="button" class="btn btn-info" id="addComp">Add Components</button>
+		</div> <!-- this is the end of the feature div. -->
+	</div> <!-- this is the end of the top row for the add button -->
+	<div class="row" id="showHide">
+		<div class="col-lg-3">
+			<div class="row">
+				<div class="col-lg-4 textPush">Component</div>
+				<div class="col-lg-6"><input type="text" name="" id="newComp" class="form-control" value="Item here" min="" max="" step="" required="required" title=""></div>
+			</div>
+		</div> <!-- this is the end of the first col of the input div -->
+		
+		<div class="col-lg-3" >
+			<div class="row">
+				<div class="col-lg-4 textPush pull-left" id="textFormat">Hours</div>
+				<div class="col-lg-6"><input type="number" name="" id="newRoof" class="form-control" value=0 min="0" max="" step=".25" required="required" title=""></div>
+			</div>
+		</div> <!-- this is the end of the second col of the input div -->
+		
+		<div class="col-lg-3">
+			<div class="row">
+				<div class="col-lg-4 textPush pull-left">Projection</div>
+				<div class="col-lg-6"><input type="number" name="" id="newProj" class="form-control" value=1 min="1" max="" step=".25" required="required" title=""></div>
+			</div>
+		</div> <!-- this is the end of the third col for the input -->
+
+		<div class="col-lg-3">
+			<div class="row">
+				<div class="col-lg-4 col-sm-6 col-xs-6">
+					<button type="button" class="btn btn-info" id="insertComp">add</button>
+				</div>
+				<div class="col-lg-4 col-sm-6 col-xs-6">
+		    		<span class="glyphicon-remove glyphicon class btn btn-info" id="out">Exit</span>
+		    	</div>
+		    </div>
+		</div>
+				
+	</div> <!-- end of the show and hide feilds -->
+	 
+</div>  <!-- End of Container -->
+
+		<!-- jQuery -->	
+	<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<!-- the next two are for the datepicker that is used for validation. -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/model.js"></script>
+		<script type="text/javascript" src="js/ajax.js"></script>
+		<script type="text/javascript" src="js/addMachine.js"></script> 
+		<script type="text/javascript" src="js/addComponent.js"></script>
+		
+</div>
+</div>
+</div>
 </body>
 </html>

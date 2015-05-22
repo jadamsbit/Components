@@ -1,31 +1,208 @@
+
 .container{
-	width: 80%;
-	background-color: grey;
+	width: 99%;
+	margin-left: -1.2em;
 }
+
 body{
-	background-color: black;
+	background-color: lightgray;
 }
+
+
+header {
+	text-align: center;
+	font-size: 2em;
+}
+.mainCont{
+	background-image: url("../images/legal-paper.jpg");
+	padding-left: 3em;
+	background-size:100%;
+	width: 90%;
+	margin:0 auto;
+
+
+}
+
+.adjust{
+	margin-left: 3px;
+}
+
 .hours{
 	border: 1px solid black;
 	text-align: center;
 	font-weight: bold;
 	color:#000000;
+	padding: 1px;
 }
+
+.addHours{
+text-align: center;
+	font-weight: bold;
+	color:#000000;
+	padding: 1px;
+}
+
 .comp{
 	border: 1px solid black;
 	font-weight: bold;
 	color:#000000;
+	text-align: center;
+	padding: 1px;
 }
+
+h1{
+	color:brown;
+}
+
+h2{
+	color:brown;
+}
+
 h3{
 	text-align: center;
+	color:brown;
 }
+
+
+
 .proj{
 	border: 1px solid black;
 	text-align: center;
 	font-weight: bold;
 	color:#000000;
+	padding: 1px;
 }
 #entry{
 	margin-top: 2em;
 	margin-bottom: 2em;
 }
+
+
+#showHide {
+	border: 3px solid black;
+	margin-bottom: 2em;
+	background-color: #d8d8d8;
+	color:red;
+	font-weight: bold;
+}
+
+#showHideMachine{
+	padding-left: 3em;
+	margin-top: .5em;
+}
+
+#newRoof{
+	margin-top: .4em;
+}
+#newComp{
+	margin-top: .4em;
+}
+#newProj{
+	margin-top: .4em;
+}
+#insertComp{
+	padding: .2em;
+	height: 2.5em;
+	margin-top: 5px;
+}
+
+#out{
+	margin-bottom: .2em;
+	margin-top: 5px;
+	width: 4em;
+	padding-right: 3.1em;
+}
+
+
+.earlyWarning {
+	background-color:yellow;
+	color: red;
+}
+
+.urgentWarning {
+	background-color:red;
+	color: white;
+}
+
+.warningUrgent {
+	background-color:red;
+	color:white; 
+	font-family:Courier, sans-serif; 
+	font-size:1.5em;
+}
+
+.warningSoon {
+	background-color:yellow;
+	color:red; 
+	font-family:Courier, sans-serif; 
+	font-size:1.5em;
+}
+
+.update{
+	margin-left: -1em;
+}
+
+.update input{
+	text-align: center;
+	vertical-align: center;
+	padding:.3em;
+	max-width: 45px;
+}
+
+/*.adjust{
+	margin-left: 1.25em;
+}*/
+
+.adjust button{
+	height: 2.3em;
+
+}
+
+.row {
+  	margin-right: -11px;
+	margin-left: -16px;
+}
+
+
+@media(max-width: 750px){
+	#headingslg{
+		display: none;
+	}
+}
+
+.form-control{
+	float: left;
+	margin-bottom: 6px;
+
+.dropdown {
+	padding-left: 3em;
+
+}
+
+#compHead{
+	margin-left: -2em;
+}
+
+#hourHead{
+	margin-left: -1em;
+}
+
+#projHead{
+	margin-left: -1em;
+}
+
+.textPush{
+	margin-top: 10px;
+  	margin-right: 9px;
+}
+.glyphicon-trash{
+	color:#ffd633;
+	padding-top:.75em;
+	padding-right: .75em;
+}
+.size{
+	width:3em;
+}
+
+
+
