@@ -32,7 +32,7 @@ $( document ).ready(function() {
 	/*===== this is the function that will take in the user info and hide the fields and buuton and show the add button. =====*/
 	$( "#insertComp" ).click(function(evt) {
 		$("#addComp").show();
-		$("#showHide").hide();
+		
 		$('#entry').show();
 		generateOutput();
 		checkLifeCycle();
@@ -83,6 +83,7 @@ function updateOutput(){
 // Input of the new data into the JSON object.
 function generateOutput(){
 	var newComp = $("#newComp").val();
+	var valOK = true;
 	var newHours = Number($("#newRoof").val());
 	var newProj = Number($("#newProj").val());
 	var newId = model.data.machines[model.selectedMachine].components.length + 1;
@@ -95,7 +96,18 @@ function generateOutput(){
 		var hours = model.data.machines[model.selectedMachine].components[i].hours
 		var projection = model.data.machines[model.selectedMachine].components[i].projection
 	}
-	generateLineItem(id,name,hours,projection)
+	if(newComp == "" || newComp.length > 8){
+		 		$("#addComp").hide();
+               alert("You need to enter component name that's eight characters or less!");
+               var valOK = false;
+
+
+            }
+
+            if(valOK == true){
+            	$("#showHide").hide();
+	generateLineItem(id,name,hours,projection);
+}
 }
  
 // Inital load of all information in the JSON to the HTML.
