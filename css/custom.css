@@ -115,24 +115,24 @@ h3{
 
 
 .earlyWarning {
-	background-color:yellow;
+	background-color:yellow !important;
 	color: red;
 }
 
 .urgentWarning {
-	background-color:red;
+	background-color:red !important;
 	color: white;
 }
 
 .warningUrgent {
-	background-color:red;
+	background-color:red !important;
 	color:white; 
 	font-family:Courier, sans-serif; 
 	font-size:1.5em;
 }
 
 .warningSoon {
-	background-color:yellow;
+	background-color:yellow !important;
 	color:red; 
 	font-family:Courier, sans-serif; 
 	font-size:1.5em;

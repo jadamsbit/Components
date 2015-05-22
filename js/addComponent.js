@@ -145,7 +145,7 @@ function nuke (){
 function generateLineItem (id, name, hours, projection){
 		$("#newRow").append("<div class='row' id='" + id + "_nRow'><div data-component='"+ id +"'id='" + id + "_glyph' style='float:left' class=' size glyphicon glyphicon-trash col-lg-1 col-md-1 col-sm-1 col-xs-1'></div><a data-toggle='modal' href='#modal-id'><div class='comp col-lg-3 col-md-3 col-sm-3 col-xs-3' id='" + id + "_comp' data-component='"+ id +"'><p>" + name + "</p></div></a> <div class='hours col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_hours'><p>" + hours + "</p> </div> <div class='proj col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_proj'><p>" + projection + "</p> </div> <div class='update col-lg-1 col-md-1 col-sm-1 col-xs-2' id='" + id + "_input'><input type='number' id='part-item-input-"+ id +"' value='0' min='-24' max='10000' step='1'></input></div> <div class='adjust col-lg-2 col-md-2 col-sm-2 col-xs-2' id='" + id + "_adjust'><button type='button' data-button='"+ id +"' class='btn btn-info updateRecordButton'>Adjust</button></div></div>"); 
 		console.log("#newRow");
-		
+		stripedRow(id);
 		
 		$( "#" + id + "_adjust button" ).click(function(evt) {
 		var id = Number($(this).data('button')); 
@@ -328,4 +328,15 @@ function updateUi(){
 		updateOutput();	
 		updateMachineListOutput();	
 }
-
+function stripedRow(id){
+		var index = model.getComponentIndex(id);
+		if(index % 2 == 0){
+            $("#" + id + "_comp").css('background-color', '#f0f8ff');
+            $("#" + id + "_hours").css('background-color', '#f0f8ff');
+            $("#" + id + "_proj").css('background-color', '#f0f8ff');
+        }else if(index % 2 != 0){
+            $("#" + id + "_comp").css('background-color', '#d8dfe6');
+            $("#" + id + "_hours").css('background-color', '#d8dfe6');
+            $("#" + id + "_proj").css('background-color', '#d8dfe6');
+        }
+}
