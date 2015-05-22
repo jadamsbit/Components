@@ -47,6 +47,13 @@ $( document ).ready(function() {
 		$("#showHide").hide();
 		$("#addComp").show();
 	});
+	$("#saveChange").click(function() {
+		var id = $(this).data("component");
+		var rename = $("#modifyModalComponent[placeholder]").val();
+		var hours = $("#modifyModalHours[placeholder]").val();
+		var projection = $("#modifyModalProjection[placeholder]").val();
+		insertComponent(id, rename, hours, projection);
+		});
 });
 function calculate(input){
 		if(input == ""){
